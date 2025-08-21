@@ -238,7 +238,7 @@
         </div>
     </main>
 
-    <script>
+<script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Mapa de temas a archivos PDF y páginas específicas (claves en Inglés para coincidir con el JSON) ---
             const topicToLinkMap = {
@@ -275,6 +275,13 @@
             };
 
             const topicTranslations = { "AC Circuits": "Circuitos de Corriente Alterna", "Atomic & Molecular Structure": "Estructura Atómica y Molecular", "Biot-Savart & Ampere's Laws": "Leyes de Biot-Savart y Ampere", "Capacitors & Dielectrics": "Capacitores y Dieléctricos", "Complex Numbers & Polynomials": "Números Complejos y Polinomios", "Continuity & Discontinuities": "Continuidad y Discontinuidades", "Derivatives & Taylor's Formula": "Derivadas y Fórmula de Taylor", "Determinants": "Determinantes", "Discrete & Continuous Distributions": "Distribuciones Discretas y Continuas", "Eigenvalues & Eigenvectors": "Autovalores y Autovectores", "Electromagnetic Induction & Faraday's Law": "Inducción Electromagnética y Ley de Faraday", "Electrostatics & Coulomb's Law": "Electrostática y Ley de Coulomb", "Fluid Mechanics": "Mecánica de Fluidos", "Gauss's Law": "Ley de Gauss", "Geometric & Physical Optics": "Óptica Geométrica y Física", "Green's, Stokes', & Divergence Theorems": "Teoremas de Green, Stokes y de la Divergencia", "Hypothesis Testing": "Prueba de Hipótesis", "Integrals & Barrow's Formula": "Integrales y Regla de Barrow", "Kinematics & Dynamics": "Cinemática y Dinámica", "Kinetic Theory of Gases": "Teoría Cinética de los Gases", "Lagrange Multipliers": "Multiplicadores de Lagrange", "Linear Transformations": "Transformaciones Lineales", "Magnetic Fields & Lorentz Force": "Campos Magnéticos y Fuerza de Lorentz", "Matrices & Linear Equations": "Matrices y Ecuaciones Lineales", "Matrix Diagonalization & Jordan Form": "Diagonalización de Matrices y Forma de Jordan", "Mechanical Waves & Acoustics": "Ondas Mecánicas y Acústica", "Multiple, Line, & Surface Integrals": "Integrales Múltiples, de Línea y de Superficie", "Numerical & Power Series": "Series Numéricas y de Potencias", "Ohm's & Kirchhoff's Laws": "Leyes de Ohm y Kirchhoff", "Ordinary Differential Equations": "Ecuaciones Diferenciales Ordinarias", "Oscillations & Rigid Body Motion": "Oscilaciones y Movimiento del Cuerpo Rígido", "Probability & Bayes' Theorem": "Probabilidad y Teorema de Bayes", "Quadratic Forms, Conics, & Quadrics": "Formas Cuadráticas, Cónicas y Cuádricas", "Real Numbers & Functions": "Números Reales y Funciones", "Sequences & Limits": "Sucesiones y Límites", "Stochastic Processes": "Procesos Estocásticos", "Thermodynamics": "Termodinámica", "Thermodynamics (First & Second Laws)": "Termodinámica (Primera y Segunda Ley)", "Vector Functions & Calculus": "Funciones Vectoriales y Cálculo Vectorial", "Vector Spaces & Subspaces": "Espacios y Subespacios Vectoriales", "Vectors, Lines, & Planes": "Vectores, Rectas y Planos", "Work, Energy, & Momentum": "Trabajo, Energía y Momento Lineal" };
+
+            // --- CORRECT URL FOR GITHUB LFS ---
+            const GITHUB_USER = "LentilStew";
+            const GITHUB_REPO = "Balseiro-examen";
+            const GITHUB_BRANCH = "main"; // Use "master" if that's your branch name
+            const rawFileBaseUrl = `https://media.githubusercontent.com/media/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}`;
+            // ------------------------------------
 
             const jsonFiles = ["1.json", "4.json", "5.json", "6.json", "7.json", "8.json"];
             let allExercises = [];
@@ -372,9 +379,9 @@
                             const linkInfo = topicToLinkMap[topic];
                             let linksHTML = '';
                             if (linkInfo) {
-                                linksHTML += `<a href="./libros/${linkInfo.book.name}#page=${linkInfo.book.page}" target="_blank" title="Ver Capítulo en ${linkInfo.book.name}">[Libro]</a>`;
+                                linksHTML += `<a href="${rawFileBaseUrl}/libros/${linkInfo.book.name}#page=${linkInfo.book.page}" target="_blank" title="Ver Capítulo en ${linkInfo.book.name}">[Libro]</a>`;
                                 if (linkInfo.solution) {
-                                    linksHTML += `<a href="./libros/${linkInfo.solution.name}#page=${linkInfo.solution.page}" target="_blank" title="Ver Soluciones en ${linkInfo.solution.name}">[Sol]</a>`;
+                                    linksHTML += `<a href="${rawFileBaseUrl}/libros/${linkInfo.solution.name}#page=${linkInfo.solution.page}" target="_blank" title="Ver Soluciones en ${linkInfo.solution.name}">[Sol]</a>`;
                                 }
                             }
                             const translatedTopic = topicTranslations[topic] || topic;
@@ -383,11 +390,13 @@
                                         <div class="topic-links">${linksHTML}</div>
                                     </div>`;
                         }).join('');
+                        
+                        const sourcePdfUrl = `${rawFileBaseUrl}/pdf/${ex.source_pdf}#page=${ex.page_number || 1}`;
 
                         card.innerHTML = `
                                 <header>
                                     <h5>Ejercicio #${ex.exercise_number}</h5>
-                                    <a href="./pdf/${ex.source_pdf}#page=${ex.page_number || 1}" target="_blank" class="source-link" title="Abrir PDF">${ex.source_pdf}</a>
+                                    <a href="${sourcePdfUrl}" target="_blank" class="source-link" title="Abrir PDF">${ex.source_pdf}</a>
                                 </header>
                                 <div class="topics-list">${topicsHTML}</div>`;
                         fragment.appendChild(card);
