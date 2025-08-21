@@ -448,9 +448,9 @@
                             const linkInfo = topicToLinkMap[topic]; // Búsqueda con el nombre en inglés
                             let linksHTML = '';
                             if (linkInfo) {
-                                linksHTML += `<a href="/libros/${linkInfo.book.name}#page=${linkInfo.book.page}" target="_blank" title="Ver Capítulo en ${linkInfo.book.name}">[Libro]</a>`;
+                                linksHTML += `<a href="/Balseiro-examen/libros/${linkInfo.book.name}#page=${linkInfo.book.page}" target="_blank" title="Ver Capítulo en ${linkInfo.book.name}">[Libro]</a>`;
                                 if (linkInfo.solution) {
-                                    linksHTML += `<a href="/libros/${linkInfo.solution.name}#page=${linkInfo.solution.page}" target="_blank" title="Ver Soluciones en ${linkInfo.solution.name}">[Sol]</a>`;
+                                    linksHTML += `<a href="/Balseiro-examen/libros/${linkInfo.solution.name}#page=${linkInfo.solution.page}" target="_blank" title="Ver Soluciones en ${linkInfo.solution.name}">[Sol]</a>`;
                                 }
                             }
                             const translatedTopic = topicTranslations[topic] || topic; // Traduce el tema para mostrarlo
@@ -463,7 +463,7 @@
                         card.innerHTML = `
                             <header>
                                 <h5>Ejercicio #${ex.exercise_number}</h5>
-                                <a href="./pdf/${ex.source_pdf}#page=${ex.page_number || 1}" target="_blank" class="source-link" title="Abrir PDF">${ex.source_pdf}</a>
+                                <a href="./Balseiro-examen/pdf/${ex.source_pdf}#page=${ex.page_number || 1}" target="_blank" class="source-link" title="Abrir PDF">${ex.source_pdf}</a>
                             </header>
                             <div class="topics-list">${topicsHTML}</div>`;
                         fragment.appendChild(card);
