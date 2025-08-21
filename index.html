@@ -15,11 +15,11 @@
 
         body {
             display: grid;
-            grid-template-columns: 280px 1fr;
+            grid-template-columns: 1fr;
             grid-template-rows: auto 1fr;
             grid-template-areas:
-                "header header"
-                "sidebar main";
+                "header"
+                "main";
             height: 100vh;
             margin: 0;
             overflow: hidden;
@@ -35,27 +35,43 @@
             align-items: center;
         }
 
+        .header-left-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
         header.container hgroup {
             margin: 0;
         }
 
-        .header-nav {
-            display: flex;
-            gap: 0.5rem;
-        }
-
         #sidebar-toggle {
-            display: none;
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            margin: 0;
+            line-height: 1;
         }
 
         /* --- Barra Lateral --- */
         aside#sidebar {
-            grid-area: sidebar;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 280px;
+            z-index: 999;
             padding: 1.5rem;
             border-right: 1px solid var(--pico-muted-border-color);
             overflow-y: auto;
             background-color: var(--pico-card-background-color);
+            transform: translateX(-100%);
             transition: transform 0.3s ease-in-out;
+        }
+
+        aside#sidebar.visible {
+            transform: translateX(0);
         }
 
         aside#sidebar h4 {
@@ -110,27 +126,15 @@
             z-index: 998;
         }
 
+        #sidebar-overlay.visible {
+            display: block;
+        }
+
         /* --- Contenido Principal --- */
         main#content {
             grid-area: main;
             overflow-y: auto;
             padding: 2rem;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .controls input[type="search"] {
-            margin-bottom: 0;
-            max-width: 400px;
-        }
-
-        .controls #result-count {
-            color: var(--pico-muted-color);
         }
 
         /* --- Tarjeta de Ejercicio --- */
@@ -159,7 +163,6 @@
             text-decoration: none;
         }
 
-        /* --- CORREGIDO Y MEJORADO: Estilo para etiquetas de temas y enlaces --- */
         .topics-list {
             margin-top: 1rem;
             padding-top: 1rem;
@@ -167,12 +170,10 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            /* Reemplaza márgenes individuales para un espaciado más limpio */
         }
 
         .topic-tag {
             display: inline-flex;
-            /* Se comporta como texto pero permite alineación flex en el interior */
             align-items: center;
             background-color: var(--pico-muted-background-color);
             color: var(--pico-muted-color);
@@ -191,51 +192,24 @@
             text-decoration: none;
             font-weight: bold;
             color: var(--pico-primary-focus);
-            /* Hacer los enlaces más visibles */
         }
 
         .topic-links a:hover {
             text-decoration: underline;
         }
+        .contrastBG{
+            color: var(--pico-border-color)!important;
+            font-size: 3em!important;
 
+        }
         /* --- Estilos Responsivos para Móviles --- */
         @media (max-width: 768px) {
-            body {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto 1fr;
-                grid-template-areas: "header" "main";
-                overflow-y: auto;
-            }
-
             header.container {
                 padding: 0.75rem 1rem;
             }
 
             main#content {
                 padding: 1.5rem 1rem;
-            }
-
-            #sidebar-toggle {
-                display: inline-block;
-            }
-
-            aside#sidebar {
-                position: fixed;
-                top: 0;
-                left: 0;
-                height: 100vh;
-                width: 280px;
-                z-index: 999;
-                border-right: 1px solid var(--pico-muted-border-color);
-                transform: translateX(-100%);
-            }
-
-            aside#sidebar.visible {
-                transform: translateX(0);
-            }
-
-            #sidebar-overlay.visible {
-                display: block;
             }
         }
     </style>
@@ -244,14 +218,14 @@
 <body>
     <div id="sidebar-overlay"></div>
     <header class="container">
-        <hgroup>
-            <h1>BD de Ejercicios</h1>
-            <h2>Filtrar por tema</h2>
-        </hgroup>
-        <div class="header-nav">
-            <button id="sidebar-toggle">Mostrar Temas</button>
-            <a href="/Balseiro-examen/dashboard.html" role="button" class="secondary">Panel</a>
+        <div class="header-left-group">
+            <button id="sidebar-toggle" aria-label="Mostrar temas" class="contrastBG">☰</button>
+            <hgroup>
+                <h1>BD de Ejercicios</h1>
+                <h2>Filtrar por tema</h2>
+            </hgroup>
         </div>
+        <a href="/Balseiro-examen/dashboard.html" role="button" class="secondary">Panel</a>
     </header>
 
     <aside id="sidebar">
@@ -260,12 +234,7 @@
     </aside>
 
     <main id="content">
-        <div class="controls">
-            <input type="search" id="search-box" placeholder="Buscar por número, fuente o tema...">
-            <span id="result-count"></span>
-        </div>
         <div id="exercises-container">
-            <p>Cargando ejercicios...</p>
         </div>
     </main>
 
@@ -305,60 +274,14 @@
                 "Work, Energy, & Momentum": { book: { name: "mech.pdf", page: 115 } }
             };
 
-            // --- NUEVO: Diccionario de Traducciones ---
-            const topicTranslations = {
-                "AC Circuits": "Circuitos de Corriente Alterna",
-                "Atomic & Molecular Structure": "Estructura Atómica y Molecular",
-                "Biot-Savart & Ampere's Laws": "Leyes de Biot-Savart y Ampere",
-                "Capacitors & Dielectrics": "Capacitores y Dieléctricos",
-                "Complex Numbers & Polynomials": "Números Complejos y Polinomios",
-                "Continuity & Discontinuities": "Continuidad y Discontinuidades",
-                "Derivatives & Taylor's Formula": "Derivadas y Fórmula de Taylor",
-                "Determinants": "Determinantes",
-                "Discrete & Continuous Distributions": "Distribuciones Discretas y Continuas",
-                "Eigenvalues & Eigenvectors": "Autovalores y Autovectores",
-                "Electromagnetic Induction & Faraday's Law": "Inducción Electromagnética y Ley de Faraday",
-                "Electrostatics & Coulomb's Law": "Electrostática y Ley de Coulomb",
-                "Fluid Mechanics": "Mecánica de Fluidos",
-                "Gauss's Law": "Ley de Gauss",
-                "Geometric & Physical Optics": "Óptica Geométrica y Física",
-                "Green's, Stokes', & Divergence Theorems": "Teoremas de Green, Stokes y de la Divergencia",
-                "Hypothesis Testing": "Prueba de Hipótesis",
-                "Integrals & Barrow's Formula": "Integrales y Regla de Barrow",
-                "Kinematics & Dynamics": "Cinemática y Dinámica",
-                "Kinetic Theory of Gases": "Teoría Cinética de los Gases",
-                "Lagrange Multipliers": "Multiplicadores de Lagrange",
-                "Linear Transformations": "Transformaciones Lineales",
-                "Magnetic Fields & Lorentz Force": "Campos Magnéticos y Fuerza de Lorentz",
-                "Matrices & Linear Equations": "Matrices y Ecuaciones Lineales",
-                "Matrix Diagonalization & Jordan Form": "Diagonalización de Matrices y Forma de Jordan",
-                "Mechanical Waves & Acoustics": "Ondas Mecánicas y Acústica",
-                "Multiple, Line, & Surface Integrals": "Integrales Múltiples, de Línea y de Superficie",
-                "Numerical & Power Series": "Series Numéricas y de Potencias",
-                "Ohm's & Kirchhoff's Laws": "Leyes de Ohm y Kirchhoff",
-                "Ordinary Differential Equations": "Ecuaciones Diferenciales Ordinarias",
-                "Oscillations & Rigid Body Motion": "Oscilaciones y Movimiento del Cuerpo Rígido",
-                "Probability & Bayes' Theorem": "Probabilidad y Teorema de Bayes",
-                "Quadratic Forms, Conics, & Quadrics": "Formas Cuadráticas, Cónicas y Cuádricas",
-                "Real Numbers & Functions": "Números Reales y Funciones",
-                "Sequences & Limits": "Sucesiones y Límites",
-                "Stochastic Processes": "Procesos Estocásticos",
-                "Thermodynamics": "Termodinámica",
-                "Thermodynamics (First & Second Laws)": "Termodinámica (Primera y Segunda Ley)",
-                "Vector Functions & Calculus": "Funciones Vectoriales y Cálculo Vectorial",
-                "Vector Spaces & Subspaces": "Espacios y Subespacios Vectoriales",
-                "Vectors, Lines, & Planes": "Vectores, Rectas y Planos",
-                "Work, Energy, & Momentum": "Trabajo, Energía y Momento Lineal"
-            };
+            const topicTranslations = { "AC Circuits": "Circuitos de Corriente Alterna", "Atomic & Molecular Structure": "Estructura Atómica y Molecular", "Biot-Savart & Ampere's Laws": "Leyes de Biot-Savart y Ampere", "Capacitors & Dielectrics": "Capacitores y Dieléctricos", "Complex Numbers & Polynomials": "Números Complejos y Polinomios", "Continuity & Discontinuities": "Continuidad y Discontinuidades", "Derivatives & Taylor's Formula": "Derivadas y Fórmula de Taylor", "Determinants": "Determinantes", "Discrete & Continuous Distributions": "Distribuciones Discretas y Continuas", "Eigenvalues & Eigenvectors": "Autovalores y Autovectores", "Electromagnetic Induction & Faraday's Law": "Inducción Electromagnética y Ley de Faraday", "Electrostatics & Coulomb's Law": "Electrostática y Ley de Coulomb", "Fluid Mechanics": "Mecánica de Fluidos", "Gauss's Law": "Ley de Gauss", "Geometric & Physical Optics": "Óptica Geométrica y Física", "Green's, Stokes', & Divergence Theorems": "Teoremas de Green, Stokes y de la Divergencia", "Hypothesis Testing": "Prueba de Hipótesis", "Integrals & Barrow's Formula": "Integrales y Regla de Barrow", "Kinematics & Dynamics": "Cinemática y Dinámica", "Kinetic Theory of Gases": "Teoría Cinética de los Gases", "Lagrange Multipliers": "Multiplicadores de Lagrange", "Linear Transformations": "Transformaciones Lineales", "Magnetic Fields & Lorentz Force": "Campos Magnéticos y Fuerza de Lorentz", "Matrices & Linear Equations": "Matrices y Ecuaciones Lineales", "Matrix Diagonalization & Jordan Form": "Diagonalización de Matrices y Forma de Jordan", "Mechanical Waves & Acoustics": "Ondas Mecánicas y Acústica", "Multiple, Line, & Surface Integrals": "Integrales Múltiples, de Línea y de Superficie", "Numerical & Power Series": "Series Numéricas y de Potencias", "Ohm's & Kirchhoff's Laws": "Leyes de Ohm y Kirchhoff", "Ordinary Differential Equations": "Ecuaciones Diferenciales Ordinarias", "Oscillations & Rigid Body Motion": "Oscilaciones y Movimiento del Cuerpo Rígido", "Probability & Bayes' Theorem": "Probabilidad y Teorema de Bayes", "Quadratic Forms, Conics, & Quadrics": "Formas Cuadráticas, Cónicas y Cuádricas", "Real Numbers & Functions": "Números Reales y Funciones", "Sequences & Limits": "Sucesiones y Límites", "Stochastic Processes": "Procesos Estocásticos", "Thermodynamics": "Termodinámica", "Thermodynamics (First & Second Laws)": "Termodinámica (Primera y Segunda Ley)", "Vector Functions & Calculus": "Funciones Vectoriales y Cálculo Vectorial", "Vector Spaces & Subspaces": "Espacios y Subespacios Vectoriales", "Vectors, Lines, & Planes": "Vectores, Rectas y Planos", "Work, Energy, & Momentum": "Trabajo, Energía y Momento Lineal" };
 
             const jsonFiles = ["1.json", "4.json", "5.json", "6.json", "7.json", "8.json"];
             let allExercises = [];
-            let currentTopic = 'all';
+            let currentTopic = null;
 
             const topicsList = document.getElementById('topics-list');
             const exercisesContainer = document.getElementById('exercises-container');
-            const searchBox = document.getElementById('search-box');
-            const resultCountEl = document.getElementById('result-count');
             const sidebar = document.getElementById('sidebar');
             const sidebarToggle = document.getElementById('sidebar-toggle');
             const sidebarOverlay = document.getElementById('sidebar-overlay');
@@ -382,11 +305,10 @@
             }
 
             function setupEventListeners() {
-                searchBox.addEventListener('input', renderExercises);
                 topicsList.addEventListener('click', (e) => {
                     const targetLi = e.target.closest('li');
                     if (targetLi) {
-                        currentTopic = targetLi.dataset.topic; // Sigue usando el nombre en inglés para la lógica
+                        currentTopic = targetLi.dataset.topic;
                         document.querySelectorAll('#topics-list li').forEach(li => li.classList.remove('active'));
                         targetLi.classList.add('active');
                         renderExercises();
@@ -405,7 +327,6 @@
                 sidebarOverlay.classList.remove('visible');
             }
 
-            // --- MODIFICADO: para usar el diccionario de traducciones ---
             function renderTopics() {
                 const topicCounts = allExercises.flatMap(ex => ex.topics).reduce((acc, topic) => {
                     acc[topic] = (acc[topic] || 0) + 1;
@@ -415,45 +336,48 @@
                     .sort(([, aCount], [, bCount]) => bCount - aCount)
                     .map(([topic]) => topic);
 
-                let topicsHTML = `<li data-topic="all" class="active">Todos los Temas <span>${allExercises.length}</span></li>`;
+                let topicsHTML = `<li data-topic="all">Todos los Temas <span>${allExercises.length}</span></li>`;
                 sortedTopics.forEach(topic => {
-                    const translatedTopic = topicTranslations[topic] || topic; // Traduce el tema para mostrarlo
-                    // data-topic sigue siendo el original en inglés para que el filtro funcione
+                    const translatedTopic = topicTranslations[topic] || topic;
                     topicsHTML += `<li data-topic="${topic}">${translatedTopic} <span>${topicCounts[topic]}</span></li>`;
                 });
                 topicsList.innerHTML = topicsHTML;
             }
 
-            // --- MODIFICADO: para usar el diccionario de traducciones ---
             function renderExercises() {
-                const searchTerm = searchBox.value.toLowerCase();
-                const topicFiltered = currentTopic === 'all' ? allExercises : allExercises.filter(ex => ex.topics.includes(currentTopic));
-                const searchFiltered = topicFiltered.filter(ex =>
-                    ex.exercise_number.toLowerCase().includes(searchTerm) ||
-                    ex.source_pdf.toLowerCase().includes(searchTerm) ||
-                    ex.topics.some(t => t.toLowerCase().includes(searchTerm))
-                );
+                if (currentTopic === null) {
+                    exercisesContainer.innerHTML = `
+                        <article style="text-align: center; margin-top: 4rem; padding: 2rem;">
+                            <h2>Bienvenido a la Base de Datos de Ejercicios</h2>
+                            <p>Para comenzar, abre el menú <strong>☰</strong> y selecciona un tema.</p>
+                        </article>`;
+                    return;
+                }
 
-                exercisesContainer.innerHTML = searchFiltered.length === 0
+                const filteredExercises = currentTopic === 'all'
+                    ? allExercises
+                    : allExercises.filter(ex => ex.topics.includes(currentTopic));
+
+                exercisesContainer.innerHTML = filteredExercises.length === 0
                     ? '<p>No se encontraron ejercicios que coincidan con tus criterios.</p>'
                     : '';
 
-                if (searchFiltered.length > 0) {
+                if (filteredExercises.length > 0) {
                     const fragment = document.createDocumentFragment();
-                    searchFiltered.forEach(ex => {
+                    filteredExercises.forEach(ex => {
                         const card = document.createElement('article');
                         card.className = 'exercise-card';
 
                         const topicsHTML = ex.topics.map(topic => {
-                            const linkInfo = topicToLinkMap[topic]; // Búsqueda con el nombre en inglés
+                            const linkInfo = topicToLinkMap[topic];
                             let linksHTML = '';
                             if (linkInfo) {
-                                linksHTML += `<a href="/Balseiro-examen/libros/${linkInfo.book.name}#page=${linkInfo.book.page}" target="_blank" title="Ver Capítulo en ${linkInfo.book.name}">[Libro]</a>`;
+                                linksHTML += `<a href="./libros/${linkInfo.book.name}#page=${linkInfo.book.page}" target="_blank" title="Ver Capítulo en ${linkInfo.book.name}">[Libro]</a>`;
                                 if (linkInfo.solution) {
-                                    linksHTML += `<a href="/Balseiro-examen/libros/${linkInfo.solution.name}#page=${linkInfo.solution.page}" target="_blank" title="Ver Soluciones en ${linkInfo.solution.name}">[Sol]</a>`;
+                                    linksHTML += `<a href="./libros/${linkInfo.solution.name}#page=${linkInfo.solution.page}" target="_blank" title="Ver Soluciones en ${linkInfo.solution.name}">[Sol]</a>`;
                                 }
                             }
-                            const translatedTopic = topicTranslations[topic] || topic; // Traduce el tema para mostrarlo
+                            const translatedTopic = topicTranslations[topic] || topic;
                             return `<div class="topic-tag">
                                         <span>${translatedTopic}</span>
                                         <div class="topic-links">${linksHTML}</div>
@@ -461,16 +385,15 @@
                         }).join('');
 
                         card.innerHTML = `
-                            <header>
-                                <h5>Ejercicio #${ex.exercise_number}</h5>
-                                <a href="./Balseiro-examen/pdf/${ex.source_pdf}#page=${ex.page_number || 1}" target="_blank" class="source-link" title="Abrir PDF">${ex.source_pdf}</a>
-                            </header>
-                            <div class="topics-list">${topicsHTML}</div>`;
+                                <header>
+                                    <h5>Ejercicio #${ex.exercise_number}</h5>
+                                    <a href="./pdf/${ex.source_pdf}#page=${ex.page_number || 1}" target="_blank" class="source-link" title="Abrir PDF">${ex.source_pdf}</a>
+                                </header>
+                                <div class="topics-list">${topicsHTML}</div>`;
                         fragment.appendChild(card);
                     });
                     exercisesContainer.appendChild(fragment);
                 }
-                resultCountEl.textContent = `${searchFiltered.length} ejercicio(s) encontrado(s)`;
             }
 
             loadExerciseData();
