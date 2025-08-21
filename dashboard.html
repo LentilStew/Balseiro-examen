@@ -50,7 +50,7 @@
             margin-bottom: 4rem;
         }
 
-        /* --- NUEVOS ESTILOS para la Guía de Lectura --- */
+        /* --- ESTILOS para la Guía de Lectura --- */
 
         /* Estilo para los elementos del acordeón */
         details {
@@ -86,6 +86,32 @@
             padding-left: 1.5rem;
             margin-top: 1.5rem;
         }
+
+        /* --- NUEVOS ESTILOS: Media Queries para Responsividad Móvil --- */
+
+        /* Aplica estos estilos en pantallas de 768px de ancho o menos */
+        @media (max-width: 768px) {
+            :root {
+                --pico-font-size: 100%; /* Restablece el tamaño de fuente base en pantallas pequeñas */
+            }
+
+            h1 {
+                font-size: 2.2rem; /* Reduce el tamaño del encabezado principal */
+            }
+
+            h2 {
+                font-size: 1.2rem; /* Reduce el tamaño del subencabezado */
+            }
+
+            article {
+                padding: 1.5rem; /* Reduce el espaciado dentro de las tarjetas de contenido */
+                margin-top: 2rem;
+            }
+
+            details summary {
+                padding: 0.8rem 1rem;
+            }
+        }
     </style>
 </head>
 
@@ -93,7 +119,6 @@
 
     <main class="container">
 
-        <!-- Botón añadido en la parte superior izquierda -->
         <a href="/Balseiro-examen/index.html" role="button" class="secondary">← Volver al Inicio</a>
 
         <header class="hero">
@@ -120,170 +145,127 @@
                 alt="Un grafo de red que muestra qué temas aparecen juntos con frecuencia en los ejercicios.">
         </article>
 
-<article>
-    <h3 id="reading-list">Guía de Lectura por Libro de Texto</h3>
-    <p>Esta es una guía de estudio reorganizada y completa, basada en la lista de temas de las materias cursadas. Despliega cada libro de texto para ver los capítulos y secciones relevantes, ordenados lógicamente.</p>
+        <article>
+            <h3 id="reading-list">Guía de Lectura por Libro de Texto</h3>
+            <p>Esta es una guía de estudio reorganizada y completa, basada en la lista de temas de las materias cursadas. Despliega cada libro de texto para ver los capítulos y secciones relevantes, ordenados lógicamente.</p>
 
-    <details>
-        <summary>Cálculo (Stewart)</summary>
-        <ul class="reading-chapters">
-            <li><strong>Cálculo Diferencial (Una Variable):</strong>
-                <ul>
-                    <li><strong>Funciones y Límites:</strong> Capítulos 1 y 2. [cite: 11, 32]</li>
-                    <li><strong>Derivadas y sus Aplicaciones:</strong> Capítulos 3 y 4. [cite: 64, 68]</li>
+            <details>
+                <summary>Cálculo (Stewart)</summary>
+                <ul class="reading-chapters">
+                    <li><strong>Cálculo Diferencial (Una Variable):</strong>
+                        <ul>
+                            <li><strong>Funciones y Límites:</strong> Capítulos 1 y 2.</li>
+                            <li><strong>Derivadas y sus Aplicaciones:</strong> Capítulos 3 y 4.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Cálculo Integral (Una Variable):</strong>
+                        <ul>
+                            <li><strong>La Integral y el Teorema Fundamental:</strong> Capítulo 5.</li>
+                            <li><strong>Aplicaciones y Técnicas de Integración:</strong> Capítulos 6, 7 y 8.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Sucesiones y Series:</strong>
+                        <ul>
+                            <li><strong>Sucesiones, Límites, Series Numéricas y de Potencias:</strong> Capítulo 11.</li>
+                            <li><strong>Fórmula de Taylor y Aplicaciones:</strong> Secciones 11.10 y 11.11.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Geometría Analítica y Álgebra Vectorial:</strong>
+                        <ul>
+                            <li><strong>Vectores, Productos Escalar/Vectorial, Rectas y Planos:</strong> Capítulo 12.</li>
+                            <li><strong>Cónicas y Cuádricas:</strong> Sección 12.6.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Cálculo Multivariable y Vectorial:</strong>
+                        <ul>
+                            <li><strong>Funciones Vectoriales y Curvas:</strong> Capítulo 13.</li>
+                            <li><strong>Derivadas Parciales y Multiplicadores de Lagrange:</strong> Capítulo 14 (específicamente 14.8).</li>
+                            <li><strong>Integrales Múltiples y Cambio de Coordenadas:</strong> Capítulo 15.</li>
+                            <li><strong>Integrales de Línea/Superficie y Teoremas de Green, Stokes y Divergencia:</strong> Capítulo 16.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Ecuaciones Diferenciales Ordinarias:</strong>
+                        <ul>
+                            <li><strong>Métodos Elementales y Ecuaciones de 1er Orden:</strong> Capítulo 9.</li>
+                            <li><strong>Ecuaciones Diferenciales de 2º Orden:</strong> Capítulo 17.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Apéndices Relevantes:</strong>
+                        <ul>
+                            <li><strong>Números Complejos y Polinomios:</strong> Apéndice H (en `Single james.pdf`) / G (en `Multi book.pdf`).</li>
+                        </ul>
+                    </li>
                 </ul>
-            </li>
-            <li><strong>Cálculo Integral (Una Variable):</strong>
-                <ul>
-                    <li><strong>La Integral y el Teorema Fundamental:</strong> Capítulo 5. [cite: 100]</li>
-                    <li><strong>Aplicaciones y Técnicas de Integración:</strong> Capítulos 6, 7 y 8. [cite: 118, 136, 161]</li>
-                </ul>
-            </li>
-            <li><strong>Sucesiones y Series:</strong>
-                <ul>
-                    <li><strong>Sucesiones, Límites, Series Numéricas y de Potencias:</strong> Capítulo 11. [cite: 207, 511]</li>
-                    <li><strong>Fórmula de Taylor y Aplicaciones:</strong> Secciones 11.10 y 11.11. [cite: 208, 512, 523]</li>
-                </ul>
-            </li>
-            <li><strong>Geometría Analítica y Álgebra Vectorial:</strong>
-                <ul>
-                    <li><strong>Vectores, Productos Escalar/Vectorial, Rectas y Planos:</strong> Capítulo 12. [cite: 217, 526]</li>
-                    <li><strong>Cónicas y Cuádricas:</strong> Sección 12.6. [cite: 218, 533]</li>
-                </ul>
-            </li>
-            <li><strong>Cálculo Multivariable y Vectorial:</strong>
-                <ul>
-                    <li><strong>Funciones Vectoriales y Curvas:</strong> Capítulo 13. [cite: 220, 536]</li>
-                    <li><strong>Derivadas Parciales y Multiplicadores de Lagrange:</strong> Capítulo 14 (específicamente 14.8). [cite: 223, 230, 544, 568]</li>
-                    <li><strong>Integrales Múltiples y Cambio de Coordenadas:</strong> Capítulo 15. [cite: 236, 574]</li>
-                    <li><strong>Integrales de Línea/Superficie y Teoremas de Green, Stokes y Divergencia:</strong> Capítulo 16. [cite: 268, 590]</li>
-                </ul>
-            </li>
-            <li><strong>Ecuaciones Diferenciales Ordinarias:</strong>
-                <ul>
-                    <li><strong>Métodos Elementales y Ecuaciones de 1er Orden:</strong> Capítulo 9. [cite: 179]</li>
-                    <li><strong>Ecuaciones Diferenciales de 2º Orden:</strong> Capítulo 17. [cite: 280, 603]</li>
-                </ul>
-            </li>
-             <li><strong>Apéndices Relevantes:</strong>
-                <ul>
-                    <li><strong>Números Complejos y Polinomios:</strong> Apéndice H (en `Single james.pdf`) / G (en `Multi book.pdf`). [cite: 314, 611]</li>
-                </ul>
-            </li>
-        </ul>
-    </details>
+            </details>
 
-    <details>
-        <summary>Mecánica (Kleppner & Kolenkow)</summary>
-        <ul class="reading-chapters">
-            <li><strong>Fundamentos de Cinemática y Dinámica:</strong>
-                <ul>
-                    <li><strong>Vectores y Cinemática:</strong> Capítulo 1. [cite: 327]</li>
-                    <li><strong>Leyes de Newton, Fuerzas y Ecuaciones de Movimiento:</strong> Capítulos 2 y 3. [cite: 331, 364]</li>
+            <details>
+                <summary>Mecánica (Kleppner & Kolenkow)</summary>
+                <ul class="reading-chapters">
+                    <li><strong>Fundamentos de Cinemática y Dinámica:</strong>
+                        <ul>
+                            <li><strong>Vectores y Cinemática:</strong> Capítulo 1.</li>
+                            <li><strong>Leyes de Newton, Fuerzas y Ecuaciones de Movimiento:</strong> Capítulos 2 y 3.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Leyes de Conservación:</strong>
+                        <ul>
+                            <li><strong>Momento Lineal e Impulso:</strong> Capítulo 4.</li>
+                            <li><strong>Trabajo y Energía:</strong> Capítulo 5.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Sistemas de Partículas y Cuerpos Rígidos:</strong>
+                        <ul>
+                            <li><strong>Oscilaciones:</strong> Sección 6.2 del Capítulo 6.</li>
+                            <li><strong>Momento Angular y Movimiento del Cuerpo Rígido:</strong> Capítulos 7 y 8.</li>
+                        </ul>
+                    </li>
                 </ul>
-            </li>
-            <li><strong>Leyes de Conservación:</strong>
-                <ul>
-                    <li><strong>Momento Lineal e Impulso:</strong> Capítulo 4. [cite: 387]</li>
-                    <li><strong>Trabajo y Energía:</strong> Capítulo 5. [cite: 425]</li>
-                </ul>
-            </li>
-            <li><strong>Sistemas de Partículas y Cuerpos Rígidos:</strong>
-                <ul>
-                    <li><strong>Oscilaciones:</strong> Sección 6.2 del Capítulo 6. [cite: 467]</li>
-                    <li><strong>Momento Angular y Movimiento del Cuerpo Rígido:</strong> Capítulos 7 y 8. [cite: 469, 473]</li>
-                </ul>
-            </li>
-        </ul>
-    </details>
+            </details>
 
-    <details>
-        <summary>Electromagnetismo (Purcell & Morin)</summary>
-        <ul class="reading-chapters">
-            <li><strong>Electrostática:</strong>
-                <ul>
-                    <li><strong>Carga, Campo Eléctrico, Ley de Coulomb y Ley de Gauss:</strong> Capítulo 1. [cite: 623]</li>
-                    <li><strong>Potencial Eléctrico:</strong> Capítulo 2. [cite: 627]</li>
-                    <li><strong>Conductores, Capacitores y Dieléctricos:</strong> Capítulos 3 y 10. [cite: 627, 648]</li>
+            <details>
+                <summary>Electromagnetismo (Purcell & Morin)</summary>
+                <ul class="reading-chapters">
+                    <li><strong>Electrostática:</strong>
+                        <ul>
+                            <li><strong>Carga, Campo Eléctrico, Ley de Coulomb y Ley de Gauss:</strong> Capítulo 1.</li>
+                            <li><strong>Potencial Eléctrico:</strong> Capítulo 2.</li>
+                            <li><strong>Conductores, Capacitores y Dieléctricos:</strong> Capítulos 3 y 10.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Magnetostática:</strong>
+                        <ul>
+                            <li><strong>Fuerza de Lorentz y Campos de Cargas en Movimiento:</strong> Capítulo 5.</li>
+                            <li><strong>El Campo Magnético (Leyes de Biot-Savart y Ampere):</strong> Capítulo 6.</li>
+                            <li><strong>Campos Magnéticos en la Materia:</strong> Capítulo 11.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Circuitos y Electrodinámica:</strong>
+                        <ul>
+                            <li><strong>Corriente Eléctrica (Leyes de Ohm y Kirchhoff):</strong> Capítulo 4.</li>
+                            <li><strong>Inducción Electromagnética (Ley de Faraday):</strong> Capítulo 7.</li>
+                            <li><strong>Circuitos de Corriente Alterna:</strong> Capítulo 8.</li>
+                            <li><strong>Ecuaciones de Maxwell:</strong> Capítulo 9.</li>
+                        </ul>
+                    </li>
                 </ul>
-            </li>
-             <li><strong>Magnetostática:</strong>
-                <ul>
-                    <li><strong>Fuerza de Lorentz y Campos de Cargas en Movimiento:</strong> Capítulo 5. [cite: 637]</li>
-                    <li><strong>El Campo Magnético (Leyes de Biot-Savart y Ampere):</strong> Capítulo 6. [cite: 641]</li>
-                    <li><strong>Campos Magnéticos en la Materia:</strong> Capítulo 11. [cite: 648]</li>
-                </ul>
-            </li>
-            <li><strong>Circuitos y Electrodinámica:</strong>
-                <ul>
-                    <li><strong>Corriente Eléctrica (Leyes de Ohm y Kirchhoff):</strong> Capítulo 4. [cite: 633]</li>
-                    <li><strong>Inducción Electromagnética (Ley de Faraday):</strong> Capítulo 7. [cite: 646]</li>
-                    <li><strong>Circuitos de Corriente Alterna:</strong> Capítulo 8. [cite: 646]</li>
-                    <li><strong>Ecuaciones de Maxwell:</strong> Capítulo 9. [cite: 649]</li>
-                </ul>
-            </li>
-        </ul>
-    </details>
+            </details>
 
-    <details>
-        <summary>Probabilidad y Estadística (Devore)</summary>
-        <ul class="reading-chapters">
-            <li><strong>Fundamentos de Probabilidad:</strong>
-                <ul>
-                    <li><strong>Espacios Muestrales, Eventos, Probabilidad Condicional y Teorema de Bayes:</strong> Capítulo 2. [cite: 743]</li>
-                </ul>
-            </li>
-            <li><strong>Variables Aleatorias y Distribuciones de Probabilidad:</strong>
-                 <ul>
-                    <li><strong>Variables Aleatorias Discretas y Continuas:</strong> Capítulos 3 y 4. [cite: 752, 766]</li>
-                    <li><strong>Distribuciones Conjuntas, Momentos y Correlación:</strong> Capítulo 5. [cite: 777]</li>
-                </ul>
-            </li>
-            <li><strong>Inferencia Estadística:</strong>
-                 <ul>
-                    <li><strong>Conceptos de Estimación:</strong> Capítulo 6. [cite: 786]</li>
-                    <li><strong>Intervalos de Confianza:</strong> Capítulo 7. [cite: 792]</li>
-                    <li><strong>Pruebas de Hipótesis:</strong> Capítulo 8. [cite: 802]</li>
-                </ul>
-            </li>
-        </ul>
-    </details>
-
-    <div id="uncovered-topics">
-        <h4>Temas Cubiertos en Otras Materias (Sin Texto de Referencia Asignado)</h4>
-        <p>Los siguientes temas de tu plan de estudios no se encuentran en los índices de los libros de texto proporcionados y corresponden a otras áreas del conocimiento como Álgebra Lineal, Física General o Química.</p>
-        <ul>
-            <li><strong>Álgebra Lineal:</strong>
-                <ul>
-                    <li>Matrices y Sistemas de Ecuaciones Lineales [cite: 914, 915]</li>
-                    <li>Determinantes [cite: 915]</li>
-                    <li>Espacios y Subespacios Vectoriales [cite: 915, 919]</li>
-                    <li>Transformaciones Lineales [cite: 919]</li>
-                    <li>Autovalores y Autovectores [cite: 919]</li>
-                </ul>
-            </li>
-            <li><strong>Física General:</strong>
-                <ul>
-                    <li>Mecánica de Fluidos [cite: 925]</li>
-                    <li>Ondas Mecánicas y Acústica [cite: 929]</li>
-                    <li>Óptica Geométrica y Física [cite: 929]</li>
-                    <li>Termodinámica y Teoría Cinética de los Gases [cite: 929, 930, 931]</li>
-                </ul>
-            </li>
-             <li><strong>Química y Otros:</strong>
-                <ul>
-                    <li>Estructura Atómica, Uniones Químicas, Soluciones, Cinética [cite: 939]</li>
-                    <li>Sistemas de Representación Gráfica (Dibujo Técnico) [cite: 935]</li>
-                    <li>Procesos Estocásticos [cite: 952]</li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</article>
-
-
-    </main>
-
-</body>
-
-</html>
+            <details>
+                <summary>Probabilidad y Estadística (Devore)</summary>
+                <ul class="reading-chapters">
+                    <li><strong>Fundamentos de Probabilidad:</strong>
+                        <ul>
+                            <li><strong>Espacios Muestrales, Eventos, Probabilidad Condicional y Teorema de Bayes:</strong> Capítulo 2.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Variables Aleatorias y Distribuciones de Probabilidad:</strong>
+                        <ul>
+                            <li><strong>Variables Aleatorias Discretas y Continuas:</strong> Capítulos 3 y 4.</li>
+                            <li><strong>Distribuciones Conjuntas, Momentos y Correlación:</strong> Capítulo 5.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Inferencia Estadística:</strong>
+                        <ul>
+                            <li><strong>Conceptos de Estimación:</strong> Capítulo 6.</li>
+                            <li><strong>Intervalos de Confianza:</strong> Capítulo 7.</li>
+                            <li><strong>Pruebas de Hipótes
