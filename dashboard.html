@@ -87,29 +87,59 @@
             margin-top: 1.5rem;
         }
 
-        /* --- NUEVOS ESTILOS: Media Queries para Responsividad Móvil --- */
+        /* --- ESTILOS MEJORADOS: Media Queries para Responsividad Móvil --- */
 
         /* Aplica estos estilos en pantallas de 768px de ancho o menos */
         @media (max-width: 768px) {
             :root {
-                --pico-font-size: 100%; /* Restablece el tamaño de fuente base en pantallas pequeñas */
+                --pico-font-size: 100%;
+                /* Restablece el tamaño de fuente base en pantallas pequeñas */
             }
 
             h1 {
-                font-size: 2.2rem; /* Reduce el tamaño del encabezado principal */
+                font-size: 2rem;
+                /* Reduce el tamaño del encabezado principal */
             }
 
             h2 {
-                font-size: 1.2rem; /* Reduce el tamaño del subencabezado */
+                font-size: 1.1rem;
+                /* Reduce el tamaño del subencabezado */
+            }
+
+            .hero {
+                margin-bottom: 2.5rem;
+                /* Reduce el espacio debajo del encabezado en móvil */
             }
 
             article {
-                padding: 1.5rem; /* Reduce el espaciado dentro de las tarjetas de contenido */
+                padding: 1.5rem 1rem;
+                /* Reduce el padding horizontal a 1rem para dar más espacio */
                 margin-top: 2rem;
             }
 
+            /* ----- SOLUCIÓN PARA IMÁGENES MÁS GRANDES EN MÓVIL ----- */
+            .chart-image {
+                /* Calcula el ancho para que la imagen ocupe el 100% del contenedor más el padding */
+                width: calc(100% + 2rem);
+                /* (1rem de padding a cada lado) */
+
+                /* El margen negativo anula el padding del <article> padre */
+                margin-left: -1rem;
+                margin-right: -1rem;
+
+                /* Ajusta el margen vertical y elimina el centrado automático */
+                margin-top: 1.5rem;
+                margin-bottom: 0;
+
+                /* Opcional: Mejora la apariencia de borde a borde */
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+            }
+
             details summary {
-                padding: 0.8rem 1rem;
+                padding: 1rem;
+                /* Asegura un buen tamaño de toque para los dedos */
             }
         }
     </style>
@@ -133,7 +163,7 @@
             <p>Este gráfico muestra el número total de ejercicios disponibles para cada tema, ordenados de mayor a menor
                 frecuencia. Ayuda a identificar las materias con mayor cobertura en el conjunto de datos.</p>
             <img src="./graphs_professional/topics_distribution.png"
-                alt="Gráfico de barras que muestra la distribución de ejercicios por tema.">
+                alt="Gráfico de barras que muestra la distribución de ejercicios por tema." class="chart-image">
         </article>
 
         <article>
@@ -142,12 +172,15 @@
                 aparecieron juntos en el mismo ejercicio. Las líneas más gruesas representan co-ocurrencias más
                 frecuentes, y los nodos más grandes representan los temas más frecuentes en general.</p>
             <img src="./graphs_professional/topic_network.png"
-                alt="Un grafo de red que muestra qué temas aparecen juntos con frecuencia en los ejercicios.">
+                alt="Un grafo de red que muestra qué temas aparecen juntos con frecuencia en los ejercicios."
+                class="chart-image">
         </article>
 
         <article>
             <h3 id="reading-list">Guía de Lectura por Libro de Texto</h3>
-            <p>Esta es una guía de estudio reorganizada y completa, basada en la lista de temas de las materias cursadas. Despliega cada libro de texto para ver los capítulos y secciones relevantes, ordenados lógicamente.</p>
+            <p>Esta es una guía de estudio reorganizada y completa, basada en la lista de temas de las materias
+                cursadas. Despliega cada libro de texto para ver los capítulos y secciones relevantes, ordenados
+                lógicamente.</p>
 
             <details>
                 <summary>Cálculo (Stewart)</summary>
@@ -172,16 +205,19 @@
                     </li>
                     <li><strong>Geometría Analítica y Álgebra Vectorial:</strong>
                         <ul>
-                            <li><strong>Vectores, Productos Escalar/Vectorial, Rectas y Planos:</strong> Capítulo 12.</li>
+                            <li><strong>Vectores, Productos Escalar/Vectorial, Rectas y Planos:</strong> Capítulo 12.
+                            </li>
                             <li><strong>Cónicas y Cuádricas:</strong> Sección 12.6.</li>
                         </ul>
                     </li>
                     <li><strong>Cálculo Multivariable y Vectorial:</strong>
                         <ul>
                             <li><strong>Funciones Vectoriales y Curvas:</strong> Capítulo 13.</li>
-                            <li><strong>Derivadas Parciales y Multiplicadores de Lagrange:</strong> Capítulo 14 (específicamente 14.8).</li>
+                            <li><strong>Derivadas Parciales y Multiplicadores de Lagrange:</strong> Capítulo 14
+                                (específicamente 14.8).</li>
                             <li><strong>Integrales Múltiples y Cambio de Coordenadas:</strong> Capítulo 15.</li>
-                            <li><strong>Integrales de Línea/Superficie y Teoremas de Green, Stokes y Divergencia:</strong> Capítulo 16.</li>
+                            <li><strong>Integrales de Línea/Superficie y Teoremas de Green, Stokes y Divergencia:</strong>
+                                Capítulo 16.</li>
                         </ul>
                     </li>
                     <li><strong>Ecuaciones Diferenciales Ordinarias:</strong>
@@ -192,7 +228,8 @@
                     </li>
                     <li><strong>Apéndices Relevantes:</strong>
                         <ul>
-                            <li><strong>Números Complejos y Polinomios:</strong> Apéndice H (en `Single james.pdf`) / G (en `Multi book.pdf`).</li>
+                            <li><strong>Números Complejos y Polinomios:</strong> Apéndice H (en `Single james.pdf`) / G
+                                (en `Multi book.pdf`).</li>
                         </ul>
                     </li>
                 </ul>
@@ -204,7 +241,8 @@
                     <li><strong>Fundamentos de Cinemática y Dinámica:</strong>
                         <ul>
                             <li><strong>Vectores y Cinemática:</strong> Capítulo 1.</li>
-                            <li><strong>Leyes de Newton, Fuerzas y Ecuaciones de Movimiento:</strong> Capítulos 2 y 3.</li>
+                            <li><strong>Leyes de Newton, Fuerzas y Ecuaciones de Movimiento:</strong> Capítulos 2 y 3.
+                            </li>
                         </ul>
                     </li>
                     <li><strong>Leyes de Conservación:</strong>
@@ -255,7 +293,8 @@
                 <ul class="reading-chapters">
                     <li><strong>Fundamentos de Probabilidad:</strong>
                         <ul>
-                            <li><strong>Espacios Muestrales, Eventos, Probabilidad Condicional y Teorema de Bayes:</strong> Capítulo 2.</li>
+                            <li><strong>Espacios Muestrales, Eventos, Probabilidad Condicional y Teorema de Bayes:</strong>
+                                Capítulo 2.</li>
                         </ul>
                     </li>
                     <li><strong>Variables Aleatorias y Distribuciones de Probabilidad:</strong>
@@ -268,4 +307,48 @@
                         <ul>
                             <li><strong>Conceptos de Estimación:</strong> Capítulo 6.</li>
                             <li><strong>Intervalos de Confianza:</strong> Capítulo 7.</li>
-                            <li><strong>Pruebas de Hipótes
+                            <li><strong>Pruebas de Hipótesis:</strong> Capítulo 8.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </details>
+
+            <div id="uncovered-topics">
+                <h4>Temas Cubiertos en Otras Materias (Sin Texto de Referencia Asignado)</h4>
+                <p>Los siguientes temas de tu plan de estudios no se encuentran en los índices de los libros de texto
+                    proporcionados y corresponden a otras áreas del conocimiento como Álgebra Lineal, Física General o
+                    Química.</p>
+                <ul>
+                    <li><strong>Álgebra Lineal:</strong>
+                        <ul>
+                            <li>Matrices y Sistemas de Ecuaciones Lineales</li>
+                            <li>Determinantes</li>
+                            <li>Espacios y Subespacios Vectoriales</li>
+                            <li>Transformaciones Lineales</li>
+                            <li>Autovalores y Autovectores</li>
+                        </ul>
+                    </li>
+                    <li><strong>Física General:</strong>
+                        <ul>
+                            <li>Mecánica de Fluidos</li>
+                            <li>Ondas Mecánicas y Acústica</li>
+                            <li>Óptica Geométrica y Física</li>
+                            <li>Termodinámica y Teoría Cinética de los Gases</li>
+                        </ul>
+                    </li>
+                    <li><strong>Química y Otros:</strong>
+                        <ul>
+                            <li>Estructura Atómica, Uniones Químicas, Soluciones, Cinética</li>
+                            <li>Sistemas de Representación Gráfica (Dibujo Técnico)</li>
+                            <li>Procesos Estocásticos</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </article>
+
+    </main>
+
+</body>
+
+</html>
