@@ -1,0 +1,690 @@
+[
+  {
+    "exercise_number": "1",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Geometric & Physical Optics"
+    ]
+  },
+  {
+    "exercise_number": "2",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Mechanical Waves & Acoustics"
+    ]
+  },
+  {
+    "exercise_number": "3",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Kinematics & Dynamics",
+      "Work, Energy, & Momentum"
+    ]
+  },
+  {
+    "exercise_number": "4",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Kinematics & Dynamics"
+    ]
+  },
+  {
+    "exercise_number": "5",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Kinematics & Dynamics",
+      "Work, Energy, & Momentum"
+    ]
+  },
+  {
+    "exercise_number": "6",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Matrices & Linear Equations",
+      "Eigenvalues & Eigenvectors"
+    ]
+  },
+  {
+    "exercise_number": "7",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Fluid Mechanics"
+    ]
+  },
+  {
+    "exercise_number": "8",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Multiple, Line, & Surface Integrals"
+    ]
+  },
+  {
+    "exercise_number": "9",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Fluid Mechanics"
+    ]
+  },
+  {
+    "exercise_number": "10",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Electrostatics & Coulomb's Law",
+      "Gauss's Law"
+    ]
+  },
+  {
+    "exercise_number": "11",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Derivatives & Taylor's Formula",
+      "Integrals & Barrow's Formula"
+    ]
+  },
+  {
+    "exercise_number": "12",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Vectors, Lines, & Planes",
+      "Quadratic Forms, Conics, & Quadrics"
+    ]
+  },
+  {
+    "exercise_number": "13",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Vectors, Lines, & Planes"
+    ]
+  },
+  {
+    "exercise_number": "14",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Kinematics & Dynamics",
+      "Work, Energy, & Momentum",
+      "Oscillations & Rigid Body Motion"
+    ]
+  },
+  {
+    "exercise_number": "15",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Oscillations & Rigid Body Motion",
+      "Work, Energy, & Momentum"
+    ]
+  },
+  {
+    "exercise_number": "16",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Thermodynamics"
+    ]
+  },
+  {
+    "exercise_number": "17",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Oscillations & Rigid Body Motion",
+      "Electrostatics & Coulomb's Law"
+    ]
+  },
+  {
+    "exercise_number": "18",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Probability & Bayes' Theorem"
+    ]
+  },
+  {
+    "exercise_number": "19",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Sequences & Limits",
+      "Complex Numbers & Polynomials"
+    ]
+  },
+  {
+    "exercise_number": "20",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Magnetic Fields & Lorentz Force"
+    ]
+  },
+  {
+    "exercise_number": "21",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Capacitors & Dielectrics",
+      "Ohm's & Kirchhoff's Laws"
+    ]
+  },
+  {
+    "exercise_number": "22",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Complex Numbers & Polynomials"
+    ]
+  },
+  {
+    "exercise_number": "23",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Multiple, Line, & Surface Integrals",
+      "Green's, Stokes', & Divergence Theorems"
+    ]
+  },
+  {
+    "exercise_number": "24",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Kinematics & Dynamics",
+      "Oscillations & Rigid Body Motion"
+    ]
+  },
+  {
+    "exercise_number": "25",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Capacitors & Dielectrics",
+      "Ohm's & Kirchhoff's Laws"
+    ]
+  },
+  {
+    "exercise_number": "26",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Complex Numbers & Polynomials"
+    ]
+  },
+  {
+    "exercise_number": "27",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Real Numbers & Functions"
+    ]
+  },
+  {
+    "exercise_number": "28",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Kinematics & Dynamics"
+    ]
+  },
+  {
+    "exercise_number": "29",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Kinematics & Dynamics",
+      "Work, Energy, & Momentum"
+    ]
+  },
+  {
+    "exercise_number": "30",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Kinematics & Dynamics",
+      "Work, Energy, & Momentum"
+    ]
+  },
+  {
+    "exercise_number": "31",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Thermodynamics"
+    ]
+  },
+  {
+    "exercise_number": "32",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Quadratic Forms, Conics, & Quadrics",
+      "Lagrange Multipliers"
+    ]
+  },
+  {
+    "exercise_number": "33",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Thermodynamics"
+    ]
+  },
+  {
+    "exercise_number": "34",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Electrostatics & Coulomb's Law",
+      "Gauss's Law"
+    ]
+  },
+  {
+    "exercise_number": "35",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Vector Spaces & Subspaces",
+      "Linear Transformations"
+    ]
+  },
+  {
+    "exercise_number": "36",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Numerical & Power Series"
+    ]
+  },
+  {
+    "exercise_number": "37",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Electromagnetic Induction & Faraday's Law"
+    ]
+  },
+  {
+    "exercise_number": "38",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Work, Energy, & Momentum"
+    ]
+  },
+  {
+    "exercise_number": "39",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Fluid Mechanics"
+    ]
+  },
+  {
+    "exercise_number": "40",
+    "source_pdf": "28702c5918b6802f1a3d3640186545db.pdf",
+    "topics": [
+      "Probability & Bayes' Theorem"
+    ]
+  },
+  {
+    "exercise_number": "1",
+    "source_pdf": "9652921f600b7850602da35ed7c2533b.pdf",
+    "topics": [
+      "Kinematics & Dynamics",
+      "Work, Energy, & Momentum",
+      "Oscillations & Rigid Body Motion"
+    ]
+  },
+  {
+    "exercise_number": "2",
+    "source_pdf": "9652921f600b7850602da35ed7c2533b.pdf",
+    "topics": [
+      "Kinematics & Dynamics",
+      "Work, Energy, & Momentum",
+      "Oscillations & Rigid Body Motion"
+    ]
+  },
+  {
+    "exercise_number": "3",
+    "source_pdf": "9652921f600b7850602da35ed7c2533b.pdf",
+    "topics": [
+      "Kinematics & Dynamics",
+      "Oscillations & Rigid Body Motion"
+    ]
+  },
+  {
+    "exercise_number": "4",
+    "source_pdf": "9652921f600b7850602da35ed7c2533b.pdf",
+    "topics": [
+      "Kinematics & Dynamics",
+      "Ordinary Differential Equations"
+    ]
+  },
+  {
+    "exercise_number": "1",
+    "source_pdf": "a073a3292bab9cfcac71d80d41371050.pdf",
+    "topics": [
+      "Electrostatics & Coulomb's Law",
+      "Gauss's Law"
+    ]
+  },
+  {
+    "exercise_number": "2",
+    "source_pdf": "a073a3292bab9cfcac71d80d41371050.pdf",
+    "topics": [
+      "Electrostatics & Coulomb's Law",
+      "Work, Energy, & Momentum"
+    ]
+  },
+  {
+    "exercise_number": "3",
+    "source_pdf": "a073a3292bab9cfcac71d80d41371050.pdf",
+    "topics": [
+      "Electrostatics & Coulomb's Law",
+      "Matrices & Linear Equations"
+    ]
+  },
+  {
+    "exercise_number": "4",
+    "source_pdf": "a073a3292bab9cfcac71d80d41371050.pdf",
+    "topics": [
+      "Electrostatics & Coulomb's Law",
+      "Ordinary Differential Equations"
+    ]
+  },
+  {
+    "exercise_number": "1",
+    "source_pdf": "c1f4851d273eaf756798caff8a67c499.pdf",
+    "topics": [
+      "Thermodynamics",
+      "Ordinary Differential Equations"
+    ]
+  },
+  {
+    "exercise_number": "2",
+    "source_pdf": "c1f4851d273eaf756798caff8a67c499.pdf",
+    "topics": [
+      "Kinematics & Dynamics",
+      "Work, Energy, & Momentum"
+    ]
+  },
+  {
+    "exercise_number": "3",
+    "source_pdf": "c1f4851d273eaf756798caff8a67c499.pdf",
+    "topics": [
+      "Multiple, Line, & Surface Integrals",
+      "Green's, Stokes', & Divergence Theorems"
+    ]
+  },
+  {
+    "exercise_number": "4",
+    "source_pdf": "c1f4851d273eaf756798caff8a67c499.pdf",
+    "topics": [
+      "Fluid Mechanics",
+      "Kinematics & Dynamics"
+    ]
+  },
+  {
+    "exercise_number": "5",
+    "source_pdf": "c1f4851d273eaf756798caff8a67c499.pdf",
+    "topics": [
+      "Electromagnetic Induction & Faraday's Law",
+      "Kinematics & Dynamics"
+    ]
+  },
+  {
+    "exercise_number": "6",
+    "source_pdf": "c1f4851d273eaf756798caff8a67c499.pdf",
+    "topics": [
+      "Matrices & Linear Equations",
+      "Eigenvalues & Eigenvectors"
+    ]
+  },
+  {
+    "exercise_number": "7",
+    "source_pdf": "c1f4851d273eaf756798caff8a67c499.pdf",
+    "topics": [
+      "Geometric & Physical Optics"
+    ]
+  },
+  {
+    "exercise_number": "8",
+    "source_pdf": "c1f4851d273eaf756798caff8a67c499.pdf",
+    "topics": [
+      "Kinematics & Dynamics",
+      "Oscillations & Rigid Body Motion"
+    ]
+  },
+  {
+    "exercise_number": "9",
+    "source_pdf": "c1f4851d273eaf756798caff8a67c499.pdf",
+    "topics": [
+      "Derivatives & Taylor's Formula",
+      "Lagrange Multipliers"
+    ]
+  },
+  {
+    "exercise_number": "10",
+    "source_pdf": "c1f4851d273eaf756798caff8a67c499.pdf",
+    "topics": [
+      "Numerical & Power Series"
+    ]
+  },
+  {
+    "exercise_number": "11",
+    "source_pdf": "c1f4851d273eaf756798caff8a67c499.pdf",
+    "topics": [
+      "Capacitors & Dielectrics",
+      "Ohm's & Kirchhoff's Laws"
+    ]
+  },
+  {
+    "exercise_number": "12",
+    "source_pdf": "c1f4851d273eaf756798caff8a67c499.pdf",
+    "topics": [
+      "Probability & Bayes' Theorem"
+    ]
+  },
+  {
+    "exercise_number": "1",
+    "source_pdf": "692c0ed8b09e163a17020116134b7dbe.pdf",
+    "topics": [
+      "Thermodynamics",
+      "Ordinary Differential Equations"
+    ]
+  },
+  {
+    "exercise_number": "2",
+    "source_pdf": "692c0ed8b09e163a17020116134b7dbe.pdf",
+    "topics": [
+      "Kinematics & Dynamics",
+      "Work, Energy, & Momentum"
+    ]
+  },
+  {
+    "exercise_number": "3",
+    "source_pdf": "692c0ed8b09e163a17020116134b7dbe.pdf",
+    "topics": [
+      "Multiple, Line, & Surface Integrals",
+      "Green's, Stokes', & Divergence Theorems"
+    ]
+  },
+  {
+    "exercise_number": "4",
+    "source_pdf": "692c0ed8b09e163a17020116134b7dbe.pdf",
+    "topics": [
+      "Fluid Mechanics",
+      "Kinematics & Dynamics"
+    ]
+  },
+  {
+    "exercise_number": "5",
+    "source_pdf": "692c0ed8b09e163a17020116134b7dbe.pdf",
+    "topics": [
+      "Electromagnetic Induction & Faraday's Law",
+      "Kinematics & Dynamics"
+    ]
+  },
+  {
+    "exercise_number": "6",
+    "source_pdf": "692c0ed8b09e163a17020116134b7dbe.pdf",
+    "topics": [
+      "Matrices & Linear Equations",
+      "Eigenvalues & Eigenvectors"
+    ]
+  },
+  {
+    "exercise_number": "7",
+    "source_pdf": "692c0ed8b09e163a17020116134b7dbe.pdf",
+    "topics": [
+      "Geometric & Physical Optics"
+    ]
+  },
+  {
+    "exercise_number": "1",
+    "source_pdf": "eb91e7b4e99defa2bc6d011ca297d3655a6b8f3a.pdf",
+    "topics": [
+      "Fluid Mechanics",
+      "Kinematics & Dynamics"
+    ]
+  },
+  {
+    "exercise_number": "2",
+    "source_pdf": "eb91e7b4e99defa2bc6d011ca297d3655a6b8f3a.pdf",
+    "topics": [
+      "Derivatives & Taylor's Formula",
+      "Lagrange Multipliers"
+    ]
+  },
+  {
+    "exercise_number": "3",
+    "source_pdf": "eb91e7b4e99defa2bc6d011ca297d3655a6b8f3a.pdf",
+    "topics": [
+      "Ordinary Differential Equations"
+    ]
+  },
+  {
+    "exercise_number": "4",
+    "source_pdf": "eb91e7b4e99defa2bc6d011ca297d3655a6b8f3a.pdf",
+    "topics": [
+      "Magnetic Fields & Lorentz Force",
+      "Biot-Savart & Ampere's Laws"
+    ]
+  },
+  {
+    "exercise_number": "1",
+    "source_pdf": "f45daa9769be9429267855e67bfbe36e4036a8be.pdf",
+    "topics": [
+      "Electrostatics & Coulomb's Law",
+      "Gauss's Law"
+    ]
+  },
+  {
+    "exercise_number": "2",
+    "source_pdf": "f45daa9769be9429267855e67bfbe36e4036a8be.pdf",
+    "topics": [
+      "Kinematics & Dynamics",
+      "Oscillations & Rigid Body Motion"
+    ]
+  },
+  {
+    "exercise_number": "3",
+    "source_pdf": "f45daa9769be9429267855e67bfbe36e4036a8be.pdf",
+    "topics": [
+      "Sequences & Limits"
+    ]
+  },
+  {
+    "exercise_number": "4",
+    "source_pdf": "f45daa9769be9429267855e67bfbe36e4036a8be.pdf",
+    "topics": [
+      "Oscillations & Rigid Body Motion",
+      "Thermodynamics"
+    ]
+  },
+  {
+    "exercise_number": "5",
+    "source_pdf": "f45daa9769be9429267855e67bfbe36e4036a8be.pdf",
+    "topics": [
+      "Ordinary Differential Equations"
+    ]
+  },
+  {
+    "exercise_number": "6",
+    "source_pdf": "f45daa9769be9429267855e67bfbe36e4036a8be.pdf",
+    "topics": [
+      "Linear Transformations",
+      "Vectors, Lines, & Planes"
+    ]
+  },
+  {
+    "exercise_number": "7",
+    "source_pdf": "f45daa9769be9429267855e67bfbe36e4036a8be.pdf",
+    "topics": [
+      "Geometric & Physical Optics"
+    ]
+  },
+  {
+    "exercise_number": "8",
+    "source_pdf": "f69284a289201a0c12a5b6e408866e45ca29e7a5.pdf",
+    "topics": [
+      "Matrices & Linear Equations",
+      "Eigenvalues & Eigenvectors"
+    ]
+  },
+  {
+    "exercise_number": "9",
+    "source_pdf": "f69284a289201a0c12a5b6e408866e45ca29e7a5.pdf",
+    "topics": [
+      "Fluid Mechanics"
+    ]
+  },
+  {
+    "exercise_number": "10",
+    "source_pdf": "f69284a289201a0c12a5b6e408866e45ca29e7a5.pdf",
+    "topics": [
+      "Kinematics & Dynamics"
+    ]
+  },
+  {
+    "exercise_number": "11",
+    "source_pdf": "f69284a289201a0c12a5b6e408866e45ca29e7a5.pdf",
+    "topics": [
+      "Magnetic Fields & Lorentz Force",
+      "Biot-Savart & Ampere's Laws"
+    ]
+  },
+  {
+    "exercise_number": "12",
+    "source_pdf": "f69284a289201a0c12a5b6e408866e45ca29e7a5.pdf",
+    "topics": [
+      "Kinematics & Dynamics",
+      "Sequences & Limits"
+    ]
+  },
+  {
+    "exercise_number": "1",
+    "source_pdf": "28cb0beeae05f498bedf5dffb6fabadaafcd5291.pdf",
+    "topics": [
+      "Oscillations & Rigid Body Motion"
+    ]
+  },
+  {
+    "exercise_number": "2",
+    "source_pdf": "28cb0beeae05f498bedf5dffb6fabadaafcd5291.pdf",
+    "topics": [
+      "Geometric & Physical Optics"
+    ]
+  },
+  {
+    "exercise_number": "3",
+    "source_pdf": "28cb0beeae05f498bedf5dffb6fabadaafcd5291.pdf",
+    "topics": [
+      "Integrals & Barrow's Formula"
+    ]
+  },
+  {
+    "exercise_number": "4",
+    "source_pdf": "28cb0beeae05f498bedf5dffb6fabadaafcd5291.pdf",
+    "topics": [
+      "Capacitors & Dielectrics",
+      "Kinematics & Dynamics"
+    ]
+  },
+  {
+    "exercise_number": "5",
+    "source_pdf": "28cb0beeae05f498bedf5dffb6fabadaafcd5291.pdf",
+    "topics": [
+      "Thermodynamics"
+    ]
+  },
+  {
+    "exercise_number": "6",
+    "source_pdf": "28cb0beeae05f498bedf5dffb6fabadaafcd5291.pdf",
+    "topics": [
+      "Multiple, Line, & Surface Integrals",
+      "Green's, Stokes', & Divergence Theorems"
+    ]
+  },
+  {
+    "exercise_number": "7",
+    "source_pdf": "28cb0beeae05f498bedf5dffb6fabadaafcd5291.pdf",
+    "topics": [
+      "Mechanical Waves & Acoustics",
+      "Oscillations & Rigid Body Motion"
+    ]
+  }
+]

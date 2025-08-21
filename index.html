@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de Datos de Ejercicios</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+        /* --- Estilos Personalizados --- */
+        :root {
+            --pico-font-size: 100%;
+            --pico-line-height: 1.5;
+        }
+
+        body {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            grid-template-rows: auto 1fr;
+            grid-template-areas:
+                "header header"
+                "sidebar main";
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* --- Encabezado --- */
+        header.container {
+            grid-area: header;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--pico-muted-border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header.container hgroup {
+            margin: 0;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        #sidebar-toggle {
+            display: none;
+        }
+
+        /* --- Barra Lateral --- */
+        aside#sidebar {
+            grid-area: sidebar;
+            padding: 1.5rem;
+            border-right: 1px solid var(--pico-muted-border-color);
+            overflow-y: auto;
+            background-color: var(--pico-card-background-color);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        aside#sidebar h4 {
+            margin-top: 0;
+        }
+
+        aside#sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        aside#sidebar li {
+            padding: 0.5rem 0.75rem;
+            cursor: pointer;
+            border-radius: var(--pico-border-radius);
+            margin-bottom: 0.25rem;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        aside#sidebar li:hover {
+            background-color: var(--pico-muted-background-color);
+        }
+
+        aside#sidebar li.active {
+            background-color: var(--pico-primary);
+            color: var(--pico-primary-inverse);
+        }
+
+        aside#sidebar li span {
+            float: right;
+            background-color: var(--pico-muted-background-color);
+            color: var(--pico-muted-color);
+            padding: 0.1rem 0.4rem;
+            border-radius: 2rem;
+            font-size: 0.75em;
+        }
+
+        aside#sidebar li.active span {
+            background-color: var(--pico-primary-inverse);
+            color: var(--pico-primary);
+        }
+
+        #sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+        }
+
+        /* --- Contenido Principal --- */
+        main#content {
+            grid-area: main;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .controls input[type="search"] {
+            margin-bottom: 0;
+            max-width: 400px;
+        }
+
+        .controls #result-count {
+            color: var(--pico-muted-color);
+        }
+
+        /* --- Tarjeta de Ejercicio --- */
+        .exercise-card {
+            border: 1px solid var(--pico-muted-border-color);
+            padding: 1.5rem;
+            border-radius: var(--pico-border-radius);
+            margin-bottom: 1.5rem;
+            background-color: var(--pico-card-background-color);
+        }
+
+        .exercise-card header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            border-bottom: none;
+        }
+
+        .exercise-card h5 {
+            margin: 0;
+        }
+
+        .exercise-card .source-link {
+            font-size: 0.9em;
+            text-decoration: none;
+        }
+
+        /* --- CORREGIDO Y MEJORADO: Estilo para etiquetas de temas y enlaces --- */
+        .topics-list {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--pico-muted-border-color);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            /* Reemplaza márgenes individuales para un espaciado más limpio */
+        }
+
+        .topic-tag {
+            display: inline-flex;
+            /* Se comporta como texto pero permite alineación flex en el interior */
+            align-items: center;
+            background-color: var(--pico-muted-background-color);
+            color: var(--pico-muted-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--pico-border-radius);
+            font-size: 0.8em;
+        }
+
+        .topic-links {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: 0.75rem;
+        }
+
+        .topic-links a {
+            text-decoration: none;
+            font-weight: bold;
+            color: var(--pico-primary-focus);
+            /* Hacer los enlaces más visibles */
+        }
+
+        .topic-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Estilos Responsivos para Móviles --- */
+        @media (max-width: 768px) {
+            body {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+                grid-template-areas: "header" "main";
+                overflow-y: auto;
+            }
+
+            header.container {
+                padding: 0.75rem 1rem;
+            }
+
+            main#content {
+                padding: 1.5rem 1rem;
+            }
+
+            #sidebar-toggle {
+                display: inline-block;
+            }
+
+            aside#sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 280px;
+                z-index: 999;
+                border-right: 1px solid var(--pico-muted-border-color);
+                transform: translateX(-100%);
+            }
+
+            aside#sidebar.visible {
+                transform: translateX(0);
+            }
+
+            #sidebar-overlay.visible {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sidebar-overlay"></div>
+    <header class="container">
+        <hgroup>
+            <h1>BD de Ejercicios</h1>
+            <h2>Filtrar por tema</h2>
+        </hgroup>
+        <div class="header-nav">
+            <button id="sidebar-toggle">Mostrar Temas</button>
+            <a href="/dashboard.html" role="button" class="secondary">Panel</a>
+        </div>
+    </header>
+
+    <aside id="sidebar">
+        <h4>Temas</h4>
+        <ul id="topics-list"></ul>
+    </aside>
+
+    <main id="content">
+        <div class="controls">
+            <input type="search" id="search-box" placeholder="Buscar por número, fuente o tema...">
+            <span id="result-count"></span>
+        </div>
+        <div id="exercises-container">
+            <p>Cargando ejercicios...</p>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mapa de temas a archivos PDF y páginas específicas (claves en Inglés para coincidir con el JSON) ---
+            const topicToLinkMap = {
+                // E&M Topics (Purcell & Morin)
+                "AC Circuits": { book: { name: "E&M.pdf", page: 388 }, solution: { name: "E&M solutions.pdf", page: 722 } },
+                "Biot-Savart & Ampere's Laws": { book: { name: "E&M.pdf", page: 277 }, solution: { name: "E&M solutions.pdf", page: 684 } },
+                "Capacitors & Dielectrics": { book: { name: "E&M.pdf", page: 124 }, solution: { name: "E&M solutions.pdf", page: 636 } },
+                "Electromagnetic Induction & Faraday's Law": { book: { name: "E&M.pdf", page: 342 }, solution: { name: "E&M solutions.pdf", page: 707 } },
+                "Electrostatics & Coulomb's Law": { book: { name: "E&M.pdf", page: 1 }, solution: { name: "E&M solutions.pdf", page: 586 } },
+                "Gauss's Law": { book: { name: "E&M.pdf", page: 23 }, solution: { name: "E&M solutions.pdf", page: 586 } },
+                "Magnetic Fields & Lorentz Force": { book: { name: "E&M.pdf", page: 235 }, solution: { name: "E&M solutions.pdf", page: 678 } },
+                "Ohm's & Kirchhoff's Laws": { book: { name: "E&M.pdf", page: 177 }, solution: { name: "E&M solutions.pdf", page: 660 } },
+
+                // Calculus Topics (Stewart)
+                "Complex Numbers & Polynomials": { book: { name: "James single .pdf", page: 1251 }, solution: { name: "James single solution.pdf", page: 1 } },
+                "Continuity & Discontinuities": { book: { name: "James single .pdf", page: 118 }, solution: { name: "James single solution.pdf", page: 1 } },
+                "Derivatives & Taylor's Formula": { book: { name: "James single .pdf", page: 799 }, solution: { name: "James single solution.pdf", page: 1 } },
+                "Green's, Stokes', & Divergence Theorems": { book: { name: "James single .pdf", page: 1107 }, solution: { name: "James single solution.pdf", page: 1 } },
+                "Integrals & Barrow's Formula": { book: { name: "James single .pdf", page: 359 }, solution: { name: "James single solution.pdf", page: 1 } },
+                "Lagrange Multipliers": { book: { name: "James single .pdf", page: 1011 }, solution: { name: "James single solution.pdf", page: 1 } },
+                "Multiple, Line, & Surface Integrals": { book: { name: "James single .pdf", page: 1027 }, solution: { name: "James single solution.pdf", page: 1 } },
+                "Numerical & Power Series": { book: { name: "James single .pdf", page: 733 }, solution: { name: "James single solution.pdf", page: 1 } },
+                "Ordinary Differential Equations": { book: { name: "James single .pdf", page: 1193 }, solution: { name: "James single solution.pdf", page: 1 } },
+                "Quadratic Forms, Conics, & Quadrics": { book: { name: "James single .pdf", page: 874 }, solution: { name: "James single solution.pdf", page: 1 } },
+                "Real Numbers & Functions": { book: { name: "James single .pdf", page: 9 }, solution: { name: "James single solution.pdf", page: 1 } },
+                "Sequences & Limits": { book: { name: "James single .pdf", page: 734 }, solution: { name: "James single solution.pdf", page: 1 } },
+                "Vector Functions & Calculus": { book: { name: "James single .pdf", page: 887 }, solution: { name: "James single solution.pdf", page: 1 } },
+                "Vectors, Lines, & Planes": { book: { name: "James single .pdf", page: 831 }, solution: { name: "James single solution.pdf", page: 1 } },
+
+                // Mechanics Topics (Kleppner & Kolenkow)
+                "Kinematics & Dynamics": { book: { name: "mech.pdf", page: 1 } },
+                "Oscillations & Rigid Body Motion": { book: { name: "mech.pdf", page: 291 } },
+                "Work, Energy, & Momentum": { book: { name: "mech.pdf", page: 115 } }
+            };
+
+            // --- NUEVO: Diccionario de Traducciones ---
+            const topicTranslations = {
+                "AC Circuits": "Circuitos de Corriente Alterna",
+                "Atomic & Molecular Structure": "Estructura Atómica y Molecular",
+                "Biot-Savart & Ampere's Laws": "Leyes de Biot-Savart y Ampere",
+                "Capacitors & Dielectrics": "Capacitores y Dieléctricos",
+                "Complex Numbers & Polynomials": "Números Complejos y Polinomios",
+                "Continuity & Discontinuities": "Continuidad y Discontinuidades",
+                "Derivatives & Taylor's Formula": "Derivadas y Fórmula de Taylor",
+                "Determinants": "Determinantes",
+                "Discrete & Continuous Distributions": "Distribuciones Discretas y Continuas",
+                "Eigenvalues & Eigenvectors": "Autovalores y Autovectores",
+                "Electromagnetic Induction & Faraday's Law": "Inducción Electromagnética y Ley de Faraday",
+                "Electrostatics & Coulomb's Law": "Electrostática y Ley de Coulomb",
+                "Fluid Mechanics": "Mecánica de Fluidos",
+                "Gauss's Law": "Ley de Gauss",
+                "Geometric & Physical Optics": "Óptica Geométrica y Física",
+                "Green's, Stokes', & Divergence Theorems": "Teoremas de Green, Stokes y de la Divergencia",
+                "Hypothesis Testing": "Prueba de Hipótesis",
+                "Integrals & Barrow's Formula": "Integrales y Regla de Barrow",
+                "Kinematics & Dynamics": "Cinemática y Dinámica",
+                "Kinetic Theory of Gases": "Teoría Cinética de los Gases",
+                "Lagrange Multipliers": "Multiplicadores de Lagrange",
+                "Linear Transformations": "Transformaciones Lineales",
+                "Magnetic Fields & Lorentz Force": "Campos Magnéticos y Fuerza de Lorentz",
+                "Matrices & Linear Equations": "Matrices y Ecuaciones Lineales",
+                "Matrix Diagonalization & Jordan Form": "Diagonalización de Matrices y Forma de Jordan",
+                "Mechanical Waves & Acoustics": "Ondas Mecánicas y Acústica",
+                "Multiple, Line, & Surface Integrals": "Integrales Múltiples, de Línea y de Superficie",
+                "Numerical & Power Series": "Series Numéricas y de Potencias",
+                "Ohm's & Kirchhoff's Laws": "Leyes de Ohm y Kirchhoff",
+                "Ordinary Differential Equations": "Ecuaciones Diferenciales Ordinarias",
+                "Oscillations & Rigid Body Motion": "Oscilaciones y Movimiento del Cuerpo Rígido",
+                "Probability & Bayes' Theorem": "Probabilidad y Teorema de Bayes",
+                "Quadratic Forms, Conics, & Quadrics": "Formas Cuadráticas, Cónicas y Cuádricas",
+                "Real Numbers & Functions": "Números Reales y Funciones",
+                "Sequences & Limits": "Sucesiones y Límites",
+                "Stochastic Processes": "Procesos Estocásticos",
+                "Thermodynamics": "Termodinámica",
+                "Thermodynamics (First & Second Laws)": "Termodinámica (Primera y Segunda Ley)",
+                "Vector Functions & Calculus": "Funciones Vectoriales y Cálculo Vectorial",
+                "Vector Spaces & Subspaces": "Espacios y Subespacios Vectoriales",
+                "Vectors, Lines, & Planes": "Vectores, Rectas y Planos",
+                "Work, Energy, & Momentum": "Trabajo, Energía y Momento Lineal"
+            };
+
+            const jsonFiles = ["1.json", "4.json", "5.json", "6.json", "7.json", "8.json"];
+            let allExercises = [];
+            let currentTopic = 'all';
+
+            const topicsList = document.getElementById('topics-list');
+            const exercisesContainer = document.getElementById('exercises-container');
+            const searchBox = document.getElementById('search-box');
+            const resultCountEl = document.getElementById('result-count');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+            async function loadExerciseData() {
+                try {
+                    const promises = jsonFiles.map(file => fetch(`./JSONS/${file}`).then(res => res.ok ? res.json() : Promise.reject(`Error al cargar ${file}`)));
+                    const results = await Promise.all(promises);
+                    allExercises = results.flat();
+                    initializeApp();
+                } catch (error) {
+                    console.error("Error al cargar los datos:", error);
+                    exercisesContainer.innerHTML = `<p style="color: red;"><strong>Error:</strong> No se pudieron cargar los datos de los ejercicios.</p>`;
+                }
+            }
+
+            function initializeApp() {
+                renderTopics();
+                renderExercises();
+                setupEventListeners();
+            }
+
+            function setupEventListeners() {
+                searchBox.addEventListener('input', renderExercises);
+                topicsList.addEventListener('click', (e) => {
+                    const targetLi = e.target.closest('li');
+                    if (targetLi) {
+                        currentTopic = targetLi.dataset.topic; // Sigue usando el nombre en inglés para la lógica
+                        document.querySelectorAll('#topics-list li').forEach(li => li.classList.remove('active'));
+                        targetLi.classList.add('active');
+                        renderExercises();
+                        closeSidebar();
+                    }
+                });
+                sidebarToggle.addEventListener('click', () => {
+                    sidebar.classList.toggle('visible');
+                    sidebarOverlay.classList.toggle('visible');
+                });
+                sidebarOverlay.addEventListener('click', closeSidebar);
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('visible');
+                sidebarOverlay.classList.remove('visible');
+            }
+
+            // --- MODIFICADO: para usar el diccionario de traducciones ---
+            function renderTopics() {
+                const topicCounts = allExercises.flatMap(ex => ex.topics).reduce((acc, topic) => {
+                    acc[topic] = (acc[topic] || 0) + 1;
+                    return acc;
+                }, {});
+                const sortedTopics = Object.entries(topicCounts)
+                    .sort(([, aCount], [, bCount]) => bCount - aCount)
+                    .map(([topic]) => topic);
+
+                let topicsHTML = `<li data-topic="all" class="active">Todos los Temas <span>${allExercises.length}</span></li>`;
+                sortedTopics.forEach(topic => {
+                    const translatedTopic = topicTranslations[topic] || topic; // Traduce el tema para mostrarlo
+                    // data-topic sigue siendo el original en inglés para que el filtro funcione
+                    topicsHTML += `<li data-topic="${topic}">${translatedTopic} <span>${topicCounts[topic]}</span></li>`;
+                });
+                topicsList.innerHTML = topicsHTML;
+            }
+
+            // --- MODIFICADO: para usar el diccionario de traducciones ---
+            function renderExercises() {
+                const searchTerm = searchBox.value.toLowerCase();
+                const topicFiltered = currentTopic === 'all' ? allExercises : allExercises.filter(ex => ex.topics.includes(currentTopic));
+                const searchFiltered = topicFiltered.filter(ex =>
+                    ex.exercise_number.toLowerCase().includes(searchTerm) ||
+                    ex.source_pdf.toLowerCase().includes(searchTerm) ||
+                    ex.topics.some(t => t.toLowerCase().includes(searchTerm))
+                );
+
+                exercisesContainer.innerHTML = searchFiltered.length === 0
+                    ? '<p>No se encontraron ejercicios que coincidan con tus criterios.</p>'
+                    : '';
+
+                if (searchFiltered.length > 0) {
+                    const fragment = document.createDocumentFragment();
+                    searchFiltered.forEach(ex => {
+                        const card = document.createElement('article');
+                        card.className = 'exercise-card';
+
+                        const topicsHTML = ex.topics.map(topic => {
+                            const linkInfo = topicToLinkMap[topic]; // Búsqueda con el nombre en inglés
+                            let linksHTML = '';
+                            if (linkInfo) {
+                                linksHTML += `<a href="/libros/${linkInfo.book.name}#page=${linkInfo.book.page}" target="_blank" title="Ver Capítulo en ${linkInfo.book.name}">[Libro]</a>`;
+                                if (linkInfo.solution) {
+                                    linksHTML += `<a href="/libros/${linkInfo.solution.name}#page=${linkInfo.solution.page}" target="_blank" title="Ver Soluciones en ${linkInfo.solution.name}">[Sol]</a>`;
+                                }
+                            }
+                            const translatedTopic = topicTranslations[topic] || topic; // Traduce el tema para mostrarlo
+                            return `<div class="topic-tag">
+                                        <span>${translatedTopic}</span>
+                                        <div class="topic-links">${linksHTML}</div>
+                                    </div>`;
+                        }).join('');
+
+                        card.innerHTML = `
+                            <header>
+                                <h5>Ejercicio #${ex.exercise_number}</h5>
+                                <a href="./pdf/${ex.source_pdf}#page=${ex.page_number || 1}" target="_blank" class="source-link" title="Abrir PDF">${ex.source_pdf}</a>
+                            </header>
+                            <div class="topics-list">${topicsHTML}</div>`;
+                        fragment.appendChild(card);
+                    });
+                    exercisesContainer.appendChild(fragment);
+                }
+                resultCountEl.textContent = `${searchFiltered.length} ejercicio(s) encontrado(s)`;
+            }
+
+            loadExerciseData();
+        });
+    </script>
+</body>
+
+</html>

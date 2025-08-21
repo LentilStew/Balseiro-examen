@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Datos de Ejercicios</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <style>
+        :root {
+            --pico-font-size: 105%;
+            /* Fuente ligeramente más grande para legibilidad */
+        }
+
+        body {
+            padding-bottom: 4rem;
+            /* Añadir espacio en la parte inferior */
+        }
+
+        main.container {
+            max-width: 960px;
+            /* Ancho óptimo para leer contenido */
+        }
+
+        /* Estilo para los contenedores de contenido */
+        article {
+            margin-top: 3rem;
+            padding: 2rem;
+            border: 1px solid var(--pico-muted-border-color);
+            border-radius: var(--pico-border-radius);
+            background-color: var(--pico-card-background-color);
+        }
+
+        /* Asegurar que las imágenes escalen correctamente */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            /* Elimina el margen/espacio inferior */
+            margin: 1.5rem auto 0;
+            /* Centra la imagen y añade espacio arriba */
+            border: 1px solid var(--pico-muted-border-color);
+        }
+
+        /* Estilo del encabezado */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        /* --- NUEVOS ESTILOS para la Guía de Lectura --- */
+
+        /* Estilo para los elementos del acordeón */
+        details {
+            border: 1px solid var(--pico-muted-border-color);
+            border-radius: var(--pico-border-radius);
+            margin-bottom: 1rem;
+        }
+
+        details summary {
+            font-weight: bold;
+            padding: 1rem;
+            cursor: pointer;
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid var(--pico-muted-border-color);
+        }
+
+        /* Estilo para la lista dentro del acordeón */
+        details .reading-chapters {
+            padding: 0.5rem 1rem 1rem 3rem;
+            /* Indenta los elementos de la lista */
+            list-style-type: disc;
+        }
+
+        details .reading-chapters li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Estilo especial para la sección de 'temas no cubiertos' */
+        #uncovered-topics {
+            border-left: 4px solid var(--pico-primary-background);
+            padding-left: 1.5rem;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <!-- Botón añadido en la parte superior izquierda -->
+        <a href="/" role="button" class="secondary">← Volver al Inicio</a>
+
+        <header class="hero">
+            <hgroup>
+                <h1>Dashboard de Datos de Ejercicios</h1>
+                <h2>Un análisis visual y textual del conjunto de datos de ejercicios.</h2>
+            </hgroup>
+        </header>
+
+        <article>
+            <h3 id="topic-distribution">Distribución de Ejercicios por Tema</h3>
+            <p>Este gráfico muestra el número total de ejercicios disponibles para cada tema, ordenados de mayor a menor
+                frecuencia. Ayuda a identificar las materias con mayor cobertura en el conjunto de datos.</p>
+            <img src="./graphs_professional/topics_distribution.png"
+                alt="Gráfico de barras que muestra la distribución de ejercicios por tema.">
+        </article>
+
+        <article>
+            <h3 id="topic-network">Red de Co-ocurrencia de Temas</h3>
+            <p>Este grafo de red visualiza las relaciones entre temas. Una línea que conecta dos temas indica que
+                aparecieron juntos en el mismo ejercicio. Las líneas más gruesas representan co-ocurrencias más
+                frecuentes, y los nodos más grandes representan los temas más frecuentes en general.</p>
+            <img src="./graphs_professional/topic_network.png"
+                alt="Un grafo de red que muestra qué temas aparecen juntos con frecuencia en los ejercicios.">
+        </article>
+
+        <article>
+            <h3 id="reading-list">Guía de Lectura por Libro de Texto</h3>
+            <p>Esta es una guía de estudio basada en la lista de temas proporcionada. Despliega cada libro de texto para
+                ver los capítulos y secciones relevantes para cada tema.</p>
+
+            <details>
+                <summary>Cálculo (Stewart)</summary>
+                <ul class="reading-chapters">
+                    <li><strong>Vectores, Rectas y Planos:</strong> Capítulo 12 (Vectores y la geometría del espacio)
+                    </li>
+                    <li><strong>Funciones Vectoriales y Cálculo:</strong> Capítulo 13 (Funciones vectoriales), Capítulo
+                        16 (Cálculo vectorial)</li>
+                    <li><strong>Multiplicadores de Lagrange:</strong> Capítulo 14 (Derivadas parciales, específicamente
+                        14.8)</li>
+                    <li><strong>Integrales Múltiples, de Línea y de Superficie:</strong> Capítulo 15 (Integrales
+                        múltiples), Capítulo 16 (Cálculo vectorial)</li>
+                    <li><strong>Teoremas de Green, Stokes y la Divergencia:</strong> Capítulo 16 (Cálculo vectorial)
+                    </li>
+                    <li><strong>Sucesiones y Límites:</strong> Capítulo 11 (Sucesiones y series infinitas)</li>
+                    <li><strong>Series Numéricas y de Potencias:</strong> Capítulo 11 (Sucesiones y series infinitas)
+                    </li>
+                    <li><strong>Derivadas y Fórmula de Taylor:</strong> Capítulo 11 (Sucesiones y series infinitas,
+                        específicamente 11.10)</li>
+                    <li><strong>Formas Cuadráticas, Cónicas y Cuádricas:</strong> Capítulo 12 (Vectores y la geometría
+                        del espacio, específicamente 12.6)</li>
+                    <li><strong>Ecuaciones Diferenciales Ordinarias:</strong> Capítulo 17 (Ecuaciones diferenciales de
+                        segundo orden)</li>
+                    <li><strong>Números Complejos y Polinomios:</strong> Apéndice G (Números Complejos)</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary>Electromagnetismo (Purcell & Morin)</summary>
+                <ul class="reading-chapters">
+                    <li><strong>Electrostática y Ley de Coulomb:</strong> Capítulo 1 (Electrostática: Cargas y campos)
+                    </li>
+                    <li><strong>Ley de Gauss:</strong> Capítulo 1 (Electrostática...), Capítulo 2 (El potencial
+                        eléctrico)</li>
+                    <li><strong>Capacitores y Dieléctricos:</strong> Capítulo 3 (Campos eléctricos alrededor de
+                        conductores), Capítulo 10 (Campos eléctricos en la materia)</li>
+                    <li><strong>Leyes de Ohm y Kirchhoff:</strong> Capítulo 4 (Corrientes eléctricas)</li>
+                    <li><strong>Campos Magnéticos y Fuerza de Lorentz:</strong> Capítulo 5 (Los campos de cargas en
+                        movimiento), Capítulo 6 (El campo magnético)</li>
+                    <li><strong>Leyes de Biot-Savart y Ampere:</strong> Capítulo 6 (El campo magnético)</li>
+                    <li><strong>Inducción Electromagnética y Ley de Faraday:</strong> Capítulo 7 (Inducción
+                        electromagnética)</li>
+                    <li><strong>Circuitos de CA:</strong> Capítulo 8 (Circuitos de corriente alterna)</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary>Mecánica (Kleppner & Kolenkow)</summary>
+                <ul class="reading-chapters">
+                    <li><strong>Vectores, Rectas y Planos:</strong> Capítulo 1 (Vectores y cinemática)</li>
+                    <li><strong>Cinemática y Dinámica:</strong> Capítulo 1 (Vectores y cinemática), Capítulo 2 (Leyes de
+                        Newton), Capítulo 3 (Fuerzas y ecuaciones de movimiento)</li>
+                    <li><strong>Trabajo, Energía y Momento Lineal:</strong> Capítulo 4 (Momento lineal), Capítulo 5
+                        (Trabajo y energía)</li>
+                    <li><strong>Oscilaciones y Movimiento del Cuerpo Rígido:</strong> Capítulo 6 (Tópicos en dinámica),
+                        Capítulo 7 (Momento angular...), Capítulo 8 (Movimiento del cuerpo rígido)</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary>Estadística (Devore)</summary>
+                <ul class="reading-chapters">
+                    <li><strong>Probabilidad y Teorema de Bayes:</strong> Capítulo 2 (Probabilidad)</li>
+                    <li><strong>Distribuciones Discretas y Continuas:</strong> Capítulo 3 (Variables aleatorias
+                        discretas...), Capítulo 4 (Variables aleatorias continuas...)</li>
+                    <li><strong>Pruebas de Hipótesis:</strong> Capítulo 8 (Pruebas de hipótesis...)</li>
+                </ul>
+            </details>
+
+            <div id="uncovered-topics">
+                <h4>Temas sin Capítulos Asignados</h4>
+                <p>Los siguientes temas pueden requerir recursos externos:</p>
+                <ul>
+                    <li>Autovalores y Autovectores</li>
+                    <li>Determinantes</li>
+                    <li>Espacios y Subespacios Vectoriales</li>
+                    <li>Estructura Atómica y Molecular</li>
+                    <li>Mecánica de Fluidos</li>
+                    <li>Matrices y Ecuaciones Lineales</li>
+                    <li>Ondas Mecánicas y Acústica</li>
+                    <li>Óptica Geométrica y Física</li>
+                    <li>Procesos Estocásticos</li>
+                    <li>Termodinámica</li>
+                    <li>Teoría Cinética de los Gases</li>
+                </ul>
+            </div>
+        </article>
+
+    </main>
+
+</body>
+
+</html>
