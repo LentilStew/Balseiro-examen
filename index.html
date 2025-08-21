@@ -156,8 +156,11 @@
         }
 
         .exercise-card h5 {
-            margin: 0;
-        }
+    margin: 0;
+    white-space: nowrap;     /* Evita que el título pase a la siguiente línea */
+    overflow: hidden;        /* Oculta cualquier texto que se desborde */
+    text-overflow: ellipsis; /* Muestra "..." si el texto es cortado por el CSS */
+}
 
         .exercise-card .source-link {
             font-size: 0.9em;
@@ -425,12 +428,18 @@
                         }
 
                         // 3. Create the main card header for the exam
-                        const cardHeaderHTML = `
-                            <header>
-                                <h5>${sourcePdf}</h5>
-                                <a href="${sourcePdfLink}" target="_blank" class="source-link" title="Abrir PDF del Examen">Ver Examen</a>
-                            </header>`;
+                        const MAX_FILENAME_LENGTH = 35; // Define el largo máximo que quieres mostrar
+let displayPdfName = sourcePdf;
 
+if (sourcePdf.length > MAX_FILENAME_LENGTH) {
+    displayPdfName = sourcePdf.substring(0, MAX_FILENAME_LENGTH) + '...';
+}
+
+const cardHeaderHTML = `
+    <header>
+        <h5 title="${sourcePdf}">${displayPdfName}</h5>
+        <a href="${sourcePdfLink}" target="_blank" class="source-link" title="Abrir PDF del Examen">Ver Examen</a>
+    </header>`;
                         // 4. Generate HTML for each individual exercise within the group
                         const exercisesHTML = exercisesInGroup.map(ex => {
                             const topicsHTML = ex.topics.map(topic => {
