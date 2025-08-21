@@ -152,6 +152,7 @@
             align-items: center;
             padding: 0;
             border-bottom: none;
+            margin-bottom: 1rem;
         }
 
         .exercise-card h5 {
@@ -164,13 +165,31 @@
         }
 
         .topics-list {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--pico-muted-border-color);
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
         }
+        
+        /* --- NUEVOS ESTILOS PARA AGRUPAR EJERCICIOS --- */
+        .inner-exercise {
+            padding-top: 1rem;
+            margin-top: 1rem;
+            border-top: 1px solid var(--pico-muted-border-color);
+        }
+
+        .exercise-card > .inner-exercise:first-of-type {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .inner-exercise h6 {
+            margin-bottom: 0.5rem;
+        }
+        /* --- FIN DE NUEVOS ESTILOS --- */
+
 
         .topic-tag {
             display: inline-flex;
@@ -356,7 +375,7 @@
                 topicsList.innerHTML = topicsHTML;
             }
             
-            // --- UPDATED RENDEREXERCISES FUNCTION ---
+            // --- MODIFIED RENDEREXERCISES FUNCTION TO MERGE CARDS ---
             function renderExercises() {
                 if (currentTopic === null) {
                     exercisesContainer.innerHTML = `
@@ -376,57 +395,81 @@
                     : '';
 
                 if (filteredExercises.length > 0) {
+                    // 1. Group exercises by source_pdf
+                    const exercisesBySource = filteredExercises.reduce((acc, ex) => {
+                        const source = ex.source_pdf;
+                        if (!acc[source]) {
+                            acc[source] = [];
+                        }
+                        acc[source].push(ex);
+                        return acc;
+                    }, {});
+
                     const fragment = document.createDocumentFragment();
                     const onMobile = isMobile();
 
-                    filteredExercises.forEach(ex => {
+                    // 2. Iterate over each group (each exam)
+                    for (const sourcePdf in exercisesBySource) {
+                        const exercisesInGroup = exercisesBySource[sourcePdf];
+                        // Sort exercises by number within the same exam
+                        exercisesInGroup.sort((a, b) => a.exercise_number - b.exercise_number);
+
                         const card = document.createElement('article');
                         card.className = 'exercise-card';
 
-                        const topicsHTML = ex.topics.map(topic => {
-                            const linkInfo = topicToLinkMap[topic];
-                            let linksHTML = '';
-                            if (linkInfo) {
-                                // Create URLs for book and solution
-                                const rawBookUrl = `${rawFileBaseUrl}/libros/${linkInfo.book.name}`;
-                                let bookLink = `${rawBookUrl}#page=${linkInfo.book.page}`;
-                                
-                                if(onMobile) {
-                                    bookLink = `https://docs.google.com/gview?url=${encodeURIComponent(rawBookUrl)}&embedded=true`;
-                                }
-                                linksHTML += `<a href="${bookLink}" target="_blank" title="Ver Capítulo en ${linkInfo.book.name}">[Libro]</a>`;
-
-                                if (linkInfo.solution) {
-                                    const rawSolutionUrl = `${rawFileBaseUrl}/libros/${linkInfo.solution.name}`;
-                                    let solutionLink = `${rawSolutionUrl}#page=${linkInfo.solution.page}`;
-                                    if(onMobile){
-                                        solutionLink = `https://docs.google.com/gview?url=${encodeURIComponent(rawSolutionUrl)}&embedded=true`;
-                                    }
-                                    linksHTML += `<a href="${solutionLink}" target="_blank" title="Ver Soluciones en ${linkInfo.solution.name}">[Sol]</a>`;
-                                }
-                            }
-                            const translatedTopic = topicTranslations[topic] || topic;
-                            return `<div class="topic-tag">
-                                        <span>${translatedTopic}</span>
-                                        <div class="topic-links">${linksHTML}</div>
-                                    </div>`;
-                        }).join('');
-
-                        const rawSourcePdfUrl = `${rawFileBaseUrl}/pdf/${ex.source_pdf}`;
-                        let sourcePdfLink = `${rawSourcePdfUrl}#page=${ex.page_number || 1}`;
-
-                        if (onMobile) {
+                        const firstExercise = exercisesInGroup[0];
+                        const rawSourcePdfUrl = `${rawFileBaseUrl}/pdf/${sourcePdf}`;
+                        let sourcePdfLink = `${rawSourcePdfUrl}#page=${firstExercise.page_number || 1}`;
+                         if (onMobile) {
                             sourcePdfLink = `https://docs.google.com/gview?url=${encodeURIComponent(rawSourcePdfUrl)}&embedded=true`;
                         }
 
-                        card.innerHTML = `
-                                <header>
-                                    <h5>Ejercicio #${ex.exercise_number}</h5>
-                                    <a href="${sourcePdfLink}" target="_blank" class="source-link" title="Abrir PDF">${ex.source_pdf}</a>
-                                </header>
-                                <div class="topics-list">${topicsHTML}</div>`;
+                        // 3. Create the main card header for the exam
+                        const cardHeaderHTML = `
+                            <header>
+                                <h5>${sourcePdf}</h5>
+                                <a href="${sourcePdfLink}" target="_blank" class="source-link" title="Abrir PDF del Examen">Ver Examen</a>
+                            </header>`;
+
+                        // 4. Generate HTML for each individual exercise within the group
+                        const exercisesHTML = exercisesInGroup.map(ex => {
+                            const topicsHTML = ex.topics.map(topic => {
+                                const linkInfo = topicToLinkMap[topic];
+                                let linksHTML = '';
+                                if (linkInfo) {
+                                    const rawBookUrl = `${rawFileBaseUrl}/libros/${linkInfo.book.name}`;
+                                    let bookLink = `${rawBookUrl}#page=${linkInfo.book.page}`;
+                                    if(onMobile) {
+                                        bookLink = `https://docs.google.com/gview?url=${encodeURIComponent(rawBookUrl)}&embedded=true`;
+                                    }
+                                    linksHTML += `<a href="${bookLink}" target="_blank" title="Ver Capítulo en ${linkInfo.book.name}">[Libro]</a>`;
+
+                                    if (linkInfo.solution) {
+                                        const rawSolutionUrl = `${rawFileBaseUrl}/libros/${linkInfo.solution.name}`;
+                                        let solutionLink = `${rawSolutionUrl}#page=${linkInfo.solution.page}`;
+                                        if(onMobile){
+                                            solutionLink = `https://docs.google.com/gview?url=${encodeURIComponent(rawSolutionUrl)}&embedded=true`;
+                                        }
+                                        linksHTML += `<a href="${solutionLink}" target="_blank" title="Ver Soluciones en ${linkInfo.solution.name}">[Sol]</a>`;
+                                    }
+                                }
+                                const translatedTopic = topicTranslations[topic] || topic;
+                                return `<div class="topic-tag">
+                                            <span>${translatedTopic}</span>
+                                            <div class="topic-links">${linksHTML}</div>
+                                        </div>`;
+                            }).join('');
+
+                            return `
+                                <div class="inner-exercise">
+                                    <h6>Ejercicio #${ex.exercise_number}</h6>
+                                    <div class="topics-list">${topicsHTML}</div>
+                                </div>`;
+                        }).join('');
+
+                        card.innerHTML = cardHeaderHTML + exercisesHTML;
                         fragment.appendChild(card);
-                    });
+                    }
                     exercisesContainer.appendChild(fragment);
                 }
             }
