@@ -1,1 +1,1 @@
-Mini pagina; Tiene ejercicios de los examenes del balseiro categorizados; Graficos
+Mini pagina; Tiene ejercicios de los examenes de ingreso del balseiro categorizados; Graficos
